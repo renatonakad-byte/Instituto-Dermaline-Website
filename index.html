@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instituto Dermaline | Medicina Integrativa e Dermatologia</title>
+  <meta name="description" content="Instituto Dermaline: Cuidado que transforma de dentro para fora. Especialistas em Dermatologia Estética, Cirúrgica e Medicina Integrativa com foco em saúde e longevidade.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/favicon.png">
+
+  <!-- Open Graph & Meta Tags para WhatsApp / Redes Sociais -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Instituto Dermaline | Medicina Integrativa e Dermatologia">
+  <meta property="og:description" content="Instituto Dermaline: Cuidado que transforma de dentro para fora. Especialistas em Dermatologia Estética, Cirúrgica e Medicina Integrativa com foco em saúde e longevidade.">
+  <meta property="og:image" content="assets/images/logo_dermaline_original.png">
+
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Styles (com versionamento para forçar atualização no navegador) -->
+  <link rel="stylesheet" href="styles.css?v=20260914_5">
+</head>
+<body>
+
+  <!-- =========================================================================
+       CABEÇALHO & LOGOMARCA 🧭
+       ========================================================================= -->
+  <header class="site-header" id="header">
+    <div class="container header-container">
+      
+      <!-- Contêiner da Marca (Brand Box) com Enquadramento Ideal -->
+      <a href="#hero" class="brand-logo-link" aria-label="Instituto Dermaline Página Inicial">
+        <div class="brand-logo-box h-16 md:h-20 w-60 md:w-72 overflow-hidden flex items-center justify-center">
+          <video class="brand-logo-video w-full h-full object-cover object-center" autoplay loop muted playsinline preload="auto">
+            <source src="assets/videos/logo_animada.mp4" type="video/mp4">
+          </video>
+        </div>
+      </a>
+
+      <!-- Área Direita: Navegação e CTA alinhados à direita -->
+      <div class="header-right">
+        <!-- Menu Principal de Navegação -->
+        <nav class="site-nav" aria-label="Navegação Principal">
+          <ul class="nav-menu">
+            <li><a href="#sobre" class="nav-link">Sobre Nós</a></li>
+            <li><a href="#procedimentos" class="nav-link">Procedimentos</a></li>
+            <li><a href="#corpo-clinico" class="nav-link">Corpo Clínico</a></li>
+            <li><a href="#localizacao" class="nav-link">Localização</a></li>
+            <li><a href="#diario" class="nav-link">Diário &amp; Dicas</a></li>
+            <li><a href="#contato" class="nav-link">Contato</a></li>
+          </ul>
+        </nav>
+
+        <!-- Botão Header CTA -->
+        <a href="#agendamento" class="header-cta-btn trigger-booking-modal" data-procedure="Consulta Médica Geral">
+          Agendar Consulta
+        </a>
+
+        <!-- Botão Hambúrguer Mobile -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Overlay do Menu Mobile -->
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <ul class="mobile-nav-list">
+      <li><a href="#sobre" class="mobile-nav-link">Sobre Nós</a></li>
+      <li><a href="#procedimentos" class="mobile-nav-link">Procedimentos</a></li>
+      <li><a href="#corpo-clinico" class="mobile-nav-link">Corpo Clínico</a></li>
+      <li><a href="#localizacao" class="mobile-nav-link">Localização &amp; Convênios</a></li>
+      <li><a href="#diario" class="mobile-nav-link">Diário &amp; Dicas</a></li>
+      <li><a href="#contato" class="mobile-nav-link">Contato</a></li>
+      <li style="margin-top: 20px;">
+        <button class="btn-primary-gold trigger-booking-modal" style="width: 100%;">Agende sua Consulta</button>
+      </li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- =========================================================================
+         DOBRA 1: HERO SECTION 💎
+         ========================================================================= -->
+    <section class="hero-section" id="hero">
+      <!-- Mídia de Fundo com Vídeo Integrado -->
+      <div class="hero-video-wrapper">
+        <video class="hero-video" id="heroVideo" autoplay loop muted playsinline preload="auto">
+          <source src="assets/videos/hero_video.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- Botão de Ação Exclusivo Mobile (Aparece abaixo do vídeo no smartphone) -->
+      <div class="hero-mobile-cta">
+        <a href="#agendamento" class="btn-primary-gold trigger-booking-modal" data-procedure="Consulta Médica Geral">
+          <span>Agendar Consulta e Avaliação</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         DOBRA 2: O INSTITUTO DERMALINE 🏛️
+         ========================================================================= -->
+    <section class="about-section" id="sobre">
+      <div class="container">
+        <div class="about-grid">
+          
+          <!-- Imagem da Recepção do Instituto Dermaline -->
+          <div class="about-image-wrapper">
+            <img src="assets/images/recepcao_balcao_amarelo.jpeg" alt="Recepção do Instituto Dermaline" class="about-featured-image" loading="lazy">
+            <div class="about-experience-badge">
+              <div class="badge-title">CUIDADO</div>
+              <div class="badge-subtitle">INTEGRAL</div>
+            </div>
+          </div>
+
+          <!-- Conteúdo Institucional -->
+          <div class="about-content">
+            <span class="section-tag">CONHEÇA O INSTITUTO</span>
+            <h2 class="section-title">Cuidado integral para revelar a melhor versão da sua pele e saúde.</h2>
+            
+            <p class="about-manifesto-quote">
+              "A verdadeira beleza nasce de dentro: da harmonia entre saúde interna, longevidade e cuidado refinado."
+            </p>
+
+            <p class="about-text">
+              No Instituto Dermaline, cada protocolo começa pela escuta atenta e investigação profunda. Integramos o rigor técnico da dermatologia clínica e estética à visão global da medicina integrativa, proporcionando um atendimento acolhedor em um ambiente desenhado para o seu total conforto e privacidade.
+            </p>
+            <p class="about-text">
+              Combinamos procedimentos dermatológicos avançados à regulação funcional e metabólica do organismo. Um método que vai além do tratamento convencional para entregar rejuvenescimento harmônico, vitalidade real e resultados perenes.
+            </p>
+
+            <!-- Pilares Institucionais -->
+            <div class="about-pillars">
+              <div class="pillar-item">
+                <div class="pillar-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="pillar-title">Estética & Rigor Técnico</h4>
+                  <p class="pillar-desc">Ciência dermatológica aplicada para resultados refinados e seguros.</p>
+                </div>
+              </div>
+
+              <div class="pillar-item">
+                <div class="pillar-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 6v6l4 2"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="pillar-title">Longevidade & Bem-Estar</h4>
+                  <p class="pillar-desc">Abordagem sistêmica para potencializar sua vitalidade e qualidade de vida.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         DOBRA 3: PROCEDIMENTOS EM CARDS 📋
+         ========================================================================= -->
+    <section class="procedures-section" id="procedimentos">
+      <div class="container">
+        
+        <div class="text-center">
+          <span class="section-tag">Tratamentos Especializados</span>
+          <h2 class="section-title">Nossos Procedimentos</h2>
+          <p class="section-subtitle">
+            Procedimentos personalizados executados com maestria médica, delicadeza técnica e respeito à sua essência natural.
+          </p>
+        </div>
+
+        <!-- Filtros Interativos -->
+        <div class="procedures-filter">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="dermatologia">Dermatologia Avançada</button>
+          <button class="filter-btn" data-filter="integrativa">Medicina Integrativa &amp; Longevidade</button>
+        </div>
+
+        <!-- Grade Responsiva com os 10 Tratamentos -->
+        <div class="procedures-grid">
+
+          <!-- Card 1: Toxina Botulínica -->
+          <article class="procedure-card" data-category="dermatologia">
+            <div class="procedure-header">
+              <div class="procedure-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 3.5C11 3.5 13.5 5 14.5 8c.6 1.8 1.4 2.2 2.3 2.5.8.3 1.1 1.1.6 1.8l-1.2 1.5c-.4.5-.6 1.1-.6 1.8v1.2C15.6 19.8 13.4 21.5 10.5 21.5H8.5"></path>
+                  <path d="M8.5 9.5c.7-.4 1.5-.4 2.2 0"></path>
+                  <path d="M9 14c.9.5 1.8.5 2.7 0"></path>
+                  <circle cx="18" cy="4" r="1.5"></circle>
+                </svg>
+              </div>
+              <span class="procedure-category">DERMATOLOGIA</span>
+            </div>
+            <h3 class="procedure-title">Toxina Botulínica</h3>
+            <p class="procedure-desc">
+              Suavização inteligente de rugas e marcas de expressão com preservação absoluta da naturalidade e jovialidade facial.
+            </p>
+            <a href="#agendamento" class="procedure-action trigger-booking-modal" data-procedure="Toxina Botulínica">
+              <span>Conhecer protocolo</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Card 2: Preenchimentos -->
+          <article class="procedure-card" data-category="dermatologia">
+            <div class="procedure-header">
+              <div class="procedure-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 3h12l4 6-10 12L2 9l4-6z"></path>
+                  <path d="M2 9h20"></path>
+                  <path d="M10 3l-2 6 4 12 4-12-2-6"></path>
+                </svg>
+              </div>
+              <span class="procedure-category">DERMATOLOGIA</span>
+            </div>
+            <h3 class="procedure-title">Preenchimentos</h3>
+            <p class="procedure-desc">
+              Restauração tridimensional de volumes, sustentação e contornos com ácido hialurônico de precisão anatômica.
+            </p>
+            <a href="#agendamento" class="procedure-action trigger-booking-modal" data-procedure="Preenchimentos">
+              <span>Conhecer protocolo</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Card 3: Bioestimuladores de Colágeno -->
+          <article class="procedure-card" data-category="dermatologia">
+            <div class="procedure-header">
+              <div class="procedure-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22a9.5 9.5 0 1 1 9.5-9.5c0 4.1-3.4 7.5-7.5 7.5a5.5 5.5 0 1 1 5.5-5.5c0-2-1.6-3.5-3.5-3.5a1.5 1.5 0 1 0 0 3"></path>
+                  <path d="m18 2 3 3-3 3"></path>
+                </svg>
+              </div>
+              <span class="procedure-category">DERMATOLOGIA</span>
+            </div>
+            <h3 class="procedure-title">Bioestimuladores de Colágeno</h3>
+            <p class="procedure-desc">
+              Estímulo autólogo profundo para o combate à flacidez e recuperação progressiva da densidade e firmeza dérmica.
+            </p>
+            <a href="#agendamento" class="procedure-action trigger-booking-modal" data-procedure="Bioestimuladores de Colágeno">
+              <span>Conhecer protocolo</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Card 4: Laser & Tecnologias -->
+          <article class="procedure-card" data-category="dermatologia">
+            <div class="procedure-header">
+              <div class="procedure-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 3 3 21 21 21 12 3"></polygon>
+                  <line x1="2" y1="13" x2="8.5" y2="15"></line>
+                  <line x1="15.5" y1="15" x2="22" y2="13"></line>
+                  <line x1="16" y1="16.5" x2="22" y2="16"></line>
+                  <line x1="16.5" y1="18" x2="22" y2="19"></line>
+                </svg>
+              </div>
+              <span class="procedure-category">DERMATOLOGIA</span>
+            </div>
+            <h3 class="procedure-title">Laser &amp; Tecnologias</h3>
+            <p class="procedure-desc">
+              Clareamento de melasma, tratamento de manchas, uniformização de poros e textura com plataformas ópticas de alta performance.
+            </p>
+            <a href="#agendamento" class="procedure-action trigger-booking-modal" data-procedure="Laser & Tecnologias">
+              <span>Conhecer protocolo</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Card 5: Cirurgia Dermatológica -->
+          <article class="procedure-card" data-category="dermatologia">
+            <div class="procedure-header">
+              <div class="procedure-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m18 2 4 4-11 11-4.5.5.5-4.5L18 2z"></path>
+                  <path d="m14.5 5.5 4 4"></path>
+                  <path d="M3 21h7"></path>
+                </svg>
+              </div>
+              <span class="procedure-category">DERMATOLOGIA</span>
+            </div>
+            <h3 class="procedure-title">Cirurgia Dermatológica</h3>
+            <p class="procedure-desc">
+              Remoção precisa e segura de sinais, cistos e lesões cutâneas com rigor técnico e foco em cicatrização nobre.
+            </p>
+            <a href="#agendamento" class="procedure-action trigger-booking-modal" data-procedure="Cirurgia Dermatológica">
+              <span>Conhecer protocolo</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Card 6: Emagrecimento Saudável -->
+          <article class="procedure-card" data-category="integrativa">
+            <div class="procedure-header">
+              <div class="procedure-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3v18"></path>
+                  <path d="M5 6h14"></path>
+                  <path d="m2 11 3-5 3 5a3 3 0 0 1-6 0Z"></path>
+                  <path d="m16 11 3-5 3 5a3 3 0 0 1-6 0Z"></path>
+                  <path d="M8 21h8"></path>
+                </svg>
+              </div>
+              <span class="procedure-category">MEDICINA INTEGRATIVA</span>
+            </div>
+            <h3 class="procedure-title">Emagrecimento Saudável</h3>
+            <p class="procedure-desc">
+              Gestão de peso com investigação metabólica abrangente, preservação de massa magra e estratégias médicas de longo prazo.
+            </p>
+            <a href="#agendamento" class="procedure-action trigger-booking-modal" data-procedure="Emagrecimento Saudável">
+              <span>Conhecer protocolo</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Card 7: Longevidade & Vitalidade -->
+          <article class="procedure-card" data-category="integrativa">
+            <div class="procedure-header">
+              <div class="procedure-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 2h14"></path>
+                  <path d="M5 22h14"></path>
+                  <path d="M17 2v4.5a5 5 0 0 1-2 4l-1 1a1 1 0 0 0 0 1l1 1a5 5 0 0 1 2 4V22"></path>
+                  <path d="M7 2v4.5a5 5 0 0 0 2 4l1 1a1 1 0 0 1 0 1l-1 1a5 5 0 0 0-2 4V22"></path>
+                </svg>
+              </div>
+              <span class="procedure-category">MEDICINA INTEGRATIVA</span>
+            </div>
+            <h3 class="procedure-title">Longevidade &amp; Vitalidade</h3>
+            <p class="procedure-desc">
+              Protocolos direcionados à otimização mitocondrial e combate ao estresse oxidativo para uma saúde celular duradoura.
+            </p>
+            <a href="#agendamento" class="procedure-action trigger-booking-modal" data-procedure="Longevidade & Vitalidade">
+              <span>Conhecer protocolo</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Card 8: Equilíbrio Hormonal -->
+          <article class="procedure-card" data-category="integrativa">
+            <div class="procedure-header">
+              <div class="procedure-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <circle cx="19" cy="5" r="2"></circle>
+                  <circle cx="5" cy="5" r="2"></circle>
+                  <circle cx="19" cy="19" r="2"></circle>
+                  <circle cx="5" cy="19" r="2"></circle>
+                  <line x1="14.2" y1="9.8" x2="17.5" y2="6.5"></line>
+                  <line x1="9.8" y1="9.8" x2="6.5" y2="6.5"></line>
+                  <line x1="14.2" y1="14.2" x2="17.5" y2="17.5"></line>
+                  <line x1="9.8" y1="14.2" x2="6.5" y2="17.5"></line>
+                </svg>
+              </div>
+              <span class="procedure-category">MEDICINA INTEGRATIVA</span>
+            </div>
+            <h3 class="procedure-title">Equilíbrio Hormonal</h3>
+            <p class="procedure-desc">
+              Avaliação endócrina detalhada e modulação hormonal precisa para restauração da energia, qualidade do sono e disposição.
+            </p>
+            <a href="#agendamento" class="procedure-action trigger-booking-modal" data-procedure="Equilíbrio Hormonal">
+              <span>Conhecer protocolo</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Card 9: Infusões Venosas -->
+          <article class="procedure-card" data-category="integrativa">
+            <div class="procedure-header">
+              <div class="procedure-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2.5C12 2.5 5.5 10.5 5.5 15.5a6.5 6.5 0 0 0 13 0c0-5-6.5-13-6.5-13Z"></path>
+                  <path d="M12 9.5a3.5 3.5 0 0 1 3.5 3.5"></path>
+                  <path d="M18 4v3"></path>
+                  <path d="M16.5 5.5h3"></path>
+                </svg>
+              </div>
+              <span class="procedure-category">MEDICINA INTEGRATIVA</span>
+            </div>
+            <h3 class="procedure-title">Infusões Venosas</h3>
+            <p class="procedure-desc">
+              Soroterapia personalizada com micronutrientes e antioxidantes para rápida absorção e fortalecimento biológico integral.
+            </p>
+            <a href="#agendamento" class="procedure-action trigger-booking-modal" data-procedure="Infusões Venosas">
+              <span>Conhecer protocolo</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Card 10: Medicina Canabinoide -->
+          <article class="procedure-card" data-category="integrativa">
+            <div class="procedure-header">
+              <div class="procedure-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22V8"></path>
+                  <path d="M12 8c-3.5 0-6.5-2.5-7.5-6 4 0 7 2.5 7.5 6Z"></path>
+                  <path d="M12 8c3.5 0 6.5-2.5 7.5-6-4 0-7 2.5-7.5 6Z"></path>
+                  <path d="M12 13c-4.5 0-7.5-1.5-9.5-4 3-1 6.5 0 9.5 4Z"></path>
+                  <path d="M12 13c4.5 0 7.5-1.5 9.5-4-3-1-6.5 0-9.5 4Z"></path>
+                </svg>
+              </div>
+              <span class="procedure-category">MEDICINA INTEGRATIVA</span>
+            </div>
+            <h3 class="procedure-title">Medicina Canabinoide</h3>
+            <p class="procedure-desc">
+              Terapêutica com fitocanabinoides voltada à regulação neurofuncional, controle da dor crônica e restauração da qualidade do sono.
+            </p>
+            <a href="#agendamento" class="procedure-action trigger-booking-modal" data-procedure="Medicina Canabinoide">
+              <span>Conhecer protocolo</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+        </div>
+
+        <!-- Botão Principal Nobre de Destaque -->
+        <div class="procedures-cta-wrapper">
+          <a href="#agendamento" class="btn-primary-gold trigger-booking-modal" data-procedure="Consulta Médica Geral">
+            <span>Agendar Consulta e Avaliação</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         DOBRA 4: CORPO CLÍNICO 🩺
+         ========================================================================= -->
+    <section class="team-section" id="corpo-clinico">
+      <div class="container">
+        
+        <div class="text-center team-header-block" id="teamHeaderBlock">
+          <div class="team-tag-wrapper">
+            <span class="section-tag team-tag-anim">Especialistas</span>
+          </div>
+          <h2 class="section-title team-split-title" id="teamSplitTitle" aria-label="Nosso Corpo Clínico">Nosso Corpo Clínico</h2>
+          <p class="section-subtitle team-subtitle-anim">
+            Médicos dedicados a unir excelência técnica, ética inegociável e uma abordagem acolhedora em cada atendimento.
+          </p>
+        </div>
+
+        <div class="team-grid" id="teamGrid">
+
+          <!-- Médico 1: Dra. Line Manuelle Gouveia -->
+          <article class="team-card team-card-reveal" data-doctor="Dra. Line Manuelle Gouveia">
+            <div class="team-photo-wrapper">
+              <img src="assets/images/dra_line.jpeg" alt="Dra. Line Manuelle Gouveia - Dermatologia Clínica, Cirúrgica e Estética" loading="lazy">
+              <div class="team-photo-glow" aria-hidden="true"></div>
+            </div>
+            <div class="team-info">
+              <span class="team-role">Dermatologia Clínica, Cirúrgica &amp; Estética</span>
+              <h3 class="team-name">Dra. Line Manuelle Gouveia</h3>
+              <div class="team-credentials">CRM-DF 17449 | Responsável Técnica</div>
+              <p class="team-bio">
+                Responsável Técnica do Instituto Dermaline. Atuação dedicada à Dermatologia Clínica, Cirúrgica e Estética Avançada, priorizando diagnósticos precisos, segurança e rejuvenescimento natural.
+              </p>
+              <div class="team-specialties">
+                <span class="specialty-tag">Dermatologia Clínica</span>
+                <span class="specialty-tag">Cirurgia Dermatológica</span>
+                <span class="specialty-tag">Estética Avançada &amp; Lasers</span>
+              </div>
+              <div class="team-action-wrapper">
+                <a href="#agendamento" class="team-cta-link trigger-booking-modal" data-procedure="Consulta em Dermatologia">
+                  <span>Agendar com Dra. Line</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Médico 2: Dr. Renato Nakad Gouveia -->
+          <article class="team-card team-card-reveal" data-doctor="Dr. Renato Nakad Gouveia">
+            <div class="team-photo-wrapper">
+              <img src="assets/images/dr_renato.jpeg" alt="Dr. Renato Nakad Gouveia - Medicina Integrativa" loading="lazy">
+              <div class="team-photo-glow" aria-hidden="true"></div>
+            </div>
+            <div class="team-info">
+              <span class="team-role">Medicina Integrativa &amp; Oftalmologia</span>
+              <h3 class="team-name">Dr. Renato Nakad Gouveia</h3>
+              <div class="team-credentials">CRM-DF 17680</div>
+              <p class="team-bio">
+                Atuação com foco em Medicina Integrativa. Pós-graduado (não especialista) em Nutrologia, Ciências da Longevidade, Endocrinologia, Bioquímica e Metabolismo e Medicina Canabinoide. Especialista em Oftalmologia (RQE 10757).
+              </p>
+              <div class="team-specialties">
+                <span class="specialty-tag">Medicina Integrativa</span>
+                <span class="specialty-tag">Ciências da Longevidade</span>
+                <span class="specialty-tag">Bioquímica &amp; Metabolismo</span>
+              </div>
+              <div class="team-action-wrapper">
+                <a href="#agendamento" class="team-cta-link trigger-booking-modal" data-procedure="Consulta em Medicina Integrativa">
+                  <span>Agendar com Dr. Renato</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         DOBRA 5: LOCALIZAÇÃO & CONVÊNIOS 🏛️📍
+         ========================================================================= -->
+    <section class="location-section" id="localizacao">
+      <div class="container">
+        
+        <div class="text-center">
+          <span class="section-tag">Conveniência &amp; Atendimento</span>
+          <h2 class="section-title">Localização &amp; Convênios</h2>
+          <p class="section-subtitle">
+            Estrutura médica no coração de Brasília com máxima comodidade, segurança, fácil mobilidade e suporte para atendimento por convênio.
+          </p>
+        </div>
+
+        <div class="location-grid">
+
+          <!-- Coluna 1: Convênios Credenciados -->
+          <div class="location-card convenios-card">
+            <div class="location-card-header">
+              <div class="location-card-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                  <path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.86.86 2.26.86 3.12 0L15 8.2"></path>
+                </svg>
+              </div>
+              <div>
+                <span class="location-card-badge">REDE CREDENCIADA</span>
+                <h3 class="location-card-title">Convênios Atendidos</h3>
+              </div>
+            </div>
+
+            <p class="location-card-desc">
+              Atendimento médico com ampla cobertura para consultas e procedimentos dermatológicos e integrativos através da rede credenciada dos principais planos e operadoras de Brasília.
+            </p>
+
+            <!-- Controles de Busca e Filtro de Convênios -->
+            <div class="convenios-controls">
+              <!-- Barra de Busca Instantânea -->
+              <div class="convenios-search-box">
+                <svg class="convenios-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input 
+                  type="text" 
+                  id="convenioSearchInput" 
+                  class="convenios-search-input" 
+                  placeholder="Buscar seu convênio (ex: Unimed, STF, Petrobras, SIS...)" 
+                  aria-label="Buscar plano ou convênio credenciado"
+                  autocomplete="off"
+                >
+                <button type="button" id="clearConvenioSearch" class="convenios-search-clear" aria-label="Limpar busca" title="Limpar busca">
+                  &times;
+                </button>
+              </div>
+
+              <!-- Abas / Pílulas de Categoria -->
+              <div class="convenios-category-pills" role="tablist" aria-label="Filtrar por categoria">
+                <button type="button" class="convenio-tab-btn active" data-category="all" role="tab" aria-selected="true">
+                  Todos <span class="tab-badge">48</span>
+                </button>
+                <button type="button" class="convenio-tab-btn" data-category="servidores" role="tab" aria-selected="false">
+                  Tribunais &amp; Servidores <span class="tab-badge">18</span>
+                </button>
+                <button type="button" class="convenio-tab-btn" data-category="seguradoras" role="tab" aria-selected="false">
+                  Planos &amp; Seguradoras <span class="tab-badge">10</span>
+                </button>
+                <button type="button" class="convenio-tab-btn" data-category="fundacoes" role="tab" aria-selected="false">
+                  Autarquias &amp; Fundações <span class="tab-badge">20</span>
+                </button>
+              </div>
+
+              <!-- Contador de Resultados -->
+              <div class="convenios-status-bar">
+                <span class="convenios-counter" id="conveniosCounter">
+                  Exibindo <strong>48</strong> convênios credenciados
+                </span>
+              </div>
+            </div>
+
+            <!-- Área dos Selos de Convênios com Scroll Elegante -->
+            <div class="convenios-scroll-area" id="conveniosScrollArea">
+              <div class="convenios-grid" id="conveniosGrid">
+                <!-- 1 -->
+                <div class="convenio-badge" data-name="afeb brasal" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">AFEB BRASAL</span>
+                </div>
+                <!-- 2 -->
+                <div class="convenio-badge" data-name="affego" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">AFFEGO</span>
+                </div>
+                <!-- 3 -->
+                <div class="convenio-badge" data-name="anafe saude" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">ANAFE SAÚDE</span>
+                </div>
+                <!-- 4 -->
+                <div class="convenio-badge" data-name="bacen banco central" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">BACEN (Banco Central)</span>
+                </div>
+                <!-- 5 -->
+                <div class="convenio-badge" data-name="brb saude brb banco de brasilia" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">BRB (SAÚDE BRB)</span>
+                </div>
+                <!-- 6 -->
+                <div class="convenio-badge" data-name="caeme - go caeme go" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">CAEME - GO</span>
+                </div>
+                <!-- 7 -->
+                <div class="convenio-badge" data-name="caesan" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">CAESAN</span>
+                </div>
+                <!-- 8 -->
+                <div class="convenio-badge" data-name="camed" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">CAMED</span>
+                </div>
+                <!-- 9 -->
+                <div class="convenio-badge" data-name="capesesp" data-category="seguradoras">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">CAPESESP</span>
+                </div>
+                <!-- 10 -->
+                <div class="convenio-badge" data-name="care plus" data-category="seguradoras">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">CARE PLUS</span>
+                </div>
+                <!-- 11 -->
+                <div class="convenio-badge" data-name="casec codevasf" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">CASEC (CODEVASF)</span>
+                </div>
+                <!-- 12 -->
+                <div class="convenio-badge" data-name="casembrapa embrapa" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">CASEMBRAPA (EMBRAPA)</span>
+                </div>
+                <!-- 13 -->
+                <div class="convenio-badge" data-name="cbmdf bombeiros df corpo de bombeiros militar" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">CBMDF (Bombeiros DF)</span>
+                </div>
+                <!-- 14 -->
+                <div class="convenio-badge" data-name="clique medicos" data-category="seguradoras">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">CLIQUE MÉDICOS</span>
+                </div>
+                <!-- 15 -->
+                <div class="convenio-badge" data-name="cnti" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">CNTI</span>
+                </div>
+                <!-- 16 -->
+                <div class="convenio-badge" data-name="conab" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">CONAB</span>
+                </div>
+                <!-- 17 -->
+                <div class="convenio-badge" data-name="embratel telos" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">EMBRATEL (TELOS)</span>
+                </div>
+                <!-- 18 -->
+                <div class="convenio-badge" data-name="fapes bndes" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">FAPES (BNDES)</span>
+                </div>
+                <!-- 19 -->
+                <div class="convenio-badge" data-name="fascal" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">FASCAL</span>
+                </div>
+                <!-- 20 -->
+                <div class="convenio-badge" data-name="gdf saude governo do distrito federal" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">GDF SAÚDE</span>
+                </div>
+                <!-- 21 -->
+                <div class="convenio-badge" data-name="geap saude geap" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">GEAP SAÚDE</span>
+                </div>
+                <!-- 22 -->
+                <div class="convenio-badge" data-name="gravia" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">GRAVIA</span>
+                </div>
+                <!-- 23 -->
+                <div class="convenio-badge" data-name="life empresarial" data-category="seguradoras">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">LIFE EMPRESARIAL</span>
+                </div>
+                <!-- 24 -->
+                <div class="convenio-badge" data-name="luminar saude evida luminar saude" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">LUMINAR SAÚDE (EVIDA)</span>
+                </div>
+                <!-- 25 -->
+                <div class="convenio-badge" data-name="notre dame intermedica gndi" data-category="seguradoras">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">NOTRE DAME</span>
+                </div>
+                <!-- 26 -->
+                <div class="convenio-badge" data-name="omint saude omint" data-category="seguradoras">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">OMINT SAÚDE</span>
+                </div>
+                <!-- 27 -->
+                <div class="convenio-badge" data-name="pf saude policia federal" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">PF SAÚDE (Polícia Federal)</span>
+                </div>
+                <!-- 28 -->
+                <div class="convenio-badge" data-name="plan assiste mpu ministerio publico da uniao" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">PLAN ASSISTE (MPU)</span>
+                </div>
+                <!-- 29 -->
+                <div class="convenio-badge" data-name="plas jmu stm superior tribunal militar" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">PLAS/JMU (STM)</span>
+                </div>
+                <!-- 30 -->
+                <div class="convenio-badge" data-name="pmdf consultas medicas policia militar df" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">PMDF - CONSULTAS MÉDICAS</span>
+                </div>
+                <!-- 31 -->
+                <div class="convenio-badge" data-name="proasa" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">PROASA</span>
+                </div>
+                <!-- 32 -->
+                <div class="convenio-badge" data-name="pro-saude camara dos deputados pro saude camara" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">PRÓ-SAÚDE (Câmara dos Deputados)</span>
+                </div>
+                <!-- 33 -->
+                <div class="convenio-badge" data-name="pro-saude tjdft pro saude tjdft tribunal de justica df" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">PRÓ-SAÚDE (TJDFT)</span>
+                </div>
+                <!-- 34 -->
+                <div class="convenio-badge" data-name="pro-ser stj pro ser superior tribunal de justica" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">PRÓ-SER (STJ)</span>
+                </div>
+                <!-- 35 -->
+                <div class="convenio-badge" data-name="pro-social trf pro social tribunal regional federal" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">PRÓ-SOCIAL (TRF)</span>
+                </div>
+                <!-- 36 -->
+                <div class="convenio-badge" data-name="real grandeza demais planos" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">REAL GRANDEZA (Demais Planos)</span>
+                </div>
+                <!-- 37 -->
+                <div class="convenio-badge" data-name="real grandeza salvus e salutem" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">REAL GRANDEZA (Salvus e Salutem)</span>
+                </div>
+                <!-- 38 -->
+                <div class="convenio-badge" data-name="saude caixa economica federal cef" data-category="seguradoras">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">SAÚDE CAIXA</span>
+                </div>
+                <!-- 39 -->
+                <div class="convenio-badge" data-name="saude petrobras br distribuidora" data-category="seguradoras">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">SAÚDE PETROBRAS</span>
+                </div>
+                <!-- 40 -->
+                <div class="convenio-badge" data-name="seguros unimed seguro unimed" data-category="seguradoras">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">SEGUROS UNIMED</span>
+                </div>
+                <!-- 41 -->
+                <div class="convenio-badge" data-name="serpro tecnologia" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">SERPRO</span>
+                </div>
+                <!-- 42 -->
+                <div class="convenio-badge" data-name="sis senado federal" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">SIS SENADO</span>
+                </div>
+                <!-- 43 -->
+                <div class="convenio-badge" data-name="stf-med stf supremo tribunal federal" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">STF-MED (STF)</span>
+                </div>
+                <!-- 44 -->
+                <div class="convenio-badge" data-name="tre saude tribunal regional eleitoral" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">TRE SAÚDE</span>
+                </div>
+                <!-- 45 -->
+                <div class="convenio-badge" data-name="trt saude tribunal regional do trabalho" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">TRT SAÚDE</span>
+                </div>
+                <!-- 46 -->
+                <div class="convenio-badge" data-name="tst saude tribunal superior do trabalho" data-category="servidores">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">TST SAÚDE</span>
+                </div>
+                <!-- 47 -->
+                <div class="convenio-badge" data-name="unafisco saude premium auditores receita federal" data-category="fundacoes">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">UNAFISCO SAÚDE (PREMIUM)</span>
+                </div>
+                <!-- 48 -->
+                <div class="convenio-badge" data-name="unimed central nacional ucn central nacional unimed" data-category="seguradoras">
+                  <span class="convenio-dot"></span>
+                  <span class="convenio-name">UNIMED CENTRAL NACIONAL</span>
+                </div>
+              </div>
+
+              <!-- Mensagem de Nenhum Convênio Encontrado -->
+              <div class="convenios-empty-state" id="conveniosEmptyState" style="display: none;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <p>Nenhum convênio encontrado para "<span id="convenioSearchTerm"></span>".</p>
+                <span class="empty-state-tip">
+                  Não encontrou seu convênio ou tem dúvidas sobre a cobertura do seu plano? Entre em contato com nossa recepção via WhatsApp para checagem imediata.
+                </span>
+              </div>
+            </div>
+
+            <!-- Botão de Alternância da Grade (Expandir / Recolher) -->
+            <div class="convenios-expand-wrapper">
+              <button type="button" id="toggleExpandConvenios" class="convenios-expand-btn">
+                <span id="expandBtnText">Ver todos os 48 convênios em grade aberta</span>
+                <svg id="expandBtnIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Botão Direto de Atendimento via WhatsApp -->
+            <a href="https://wa.me/5561991736660?text=Olá!%20Gostaria%20de%20verificar%20a%20cobertura%20do%20meu%20convênio%20no%20Instituto%20Dermaline." target="_blank" rel="noopener noreferrer" class="convenios-help-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              <span>Consultar cobertura do meu convênio via WhatsApp</span>
+            </a>
+          </div>
+
+          <!-- Coluna 2: Endereço & Google Maps -->
+          <div class="location-card map-card">
+            <div class="location-card-header">
+              <div class="location-card-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div>
+                <span class="location-card-badge">BRASÍLIA - DF</span>
+                <h3 class="location-card-title">Shopping Conjunto Nacional</h3>
+              </div>
+            </div>
+
+            <div class="address-details">
+              <p class="address-main">
+                <strong>Torre Vermelha — Salas 5040 e 5042</strong><br>
+                SDN CNB, Conjunto A — Asa Norte, Brasília - DF<br>
+                CEP: 70.077-900 | Coração do Plano Piloto
+              </p>
+              
+              <!-- Facilidades do Shopping / Local -->
+              <div class="location-facilities">
+                <div class="facility-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                    <path d="M7 17V7h4a3 3 0 0 1 0 6H7"></path>
+                  </svg>
+                  <span>Estacionamento amplo e coberto do Shopping</span>
+                </div>
+                <div class="facility-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+                    <path d="M4 11h16"></path>
+                    <path d="M12 3v8"></path>
+                    <circle cx="8" cy="16" r="1"></circle>
+                    <circle cx="16" cy="16" r="1"></circle>
+                  </svg>
+                  <span>Acesso direto ao Metrô e Rodoviária do Plano Piloto</span>
+                </div>
+                <div class="facility-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  <span>Segurança 24h e elevadores com acessibilidade plena</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Container do Google Maps Interativo -->
+            <div class="google-maps-embed-wrapper">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.2965646197306!2d-47.8860714!3d-15.7883584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3ae1781eb495%3A0x6b29d18b4e72ae9b!2sShopping%20Conjunto%20Nacional!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+                width="100%" 
+                height="220" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa de Localização - Shopping Conjunto Nacional Brasília">
+              </iframe>
+            </div>
+
+            <!-- Botões de Rota e Navegação -->
+            <div class="map-action-buttons">
+              <a href="https://maps.google.com/?q=Shopping+Conjunto+Nacional+Brasilia" target="_blank" rel="noopener noreferrer" class="map-route-btn google-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                </svg>
+                <span>Abrir no Google Maps</span>
+              </a>
+              <a href="https://waze.com/ul?q=Shopping+Conjunto+Nacional+Brasilia" target="_blank" rel="noopener noreferrer" class="map-route-btn waze-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m10 15 5-3-5-3v6Z"></path>
+                </svg>
+                <span>Traçar Rota no Waze</span>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         DOBRA 6: DIÁRIO DERMALINE (DICA DO DIA & ARTIGO SEMANAL) 🌿📖
+         ========================================================================= -->
+    <section class="journal-section" id="diario">
+      <div class="container">
+        
+        <div class="text-center">
+          <span class="section-tag">CONTEÚDO MÉDICO SUPERVISIONADO</span>
+          <h2 class="section-title">Diário Dermaline: Ciência &amp; Vitalidade</h2>
+          <p class="section-subtitle">
+            Pílulas diárias de hábitos saudáveis, nutrição celular, dermatologia clínica e rotina estética, aliadas a reflexões semanais aprofundadas com a chancela do nosso corpo clínico.
+          </p>
+          <div class="diario-action-bar">
+            <button type="button" class="btn-open-acervo" id="btnOpenAcervo" aria-label="Abrir Acervo de Dicas e Hábitos">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                <line x1="9" y1="7" x2="15" y2="7"></line>
+                <line x1="9" y1="11" x2="15" y2="11"></line>
+              </svg>
+              <span>🌱 Acervo de Dicas &amp; Hábitos</span>
+            </button>
+            <button type="button" class="btn-open-reflexoes" id="btnOpenReflexoes" aria-label="Abrir Acervo de Reflexões Médicas">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+              <span>📖 Acervo de Reflexões Médicas</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="journal-grid">
+
+          <!-- Bloco 1: Dica do Dia Interativa (Pílula de Saúde) -->
+          <div class="journal-card daily-pill-card">
+            
+            <div class="pill-header">
+              <div class="pill-live-badge">
+                <span class="pulse-indicator"></span>
+                <span>Pílula do Dia • Atualizado Hoje</span>
+              </div>
+              <span class="pill-date-display" id="pillCurrentDate">Segunda-feira, 7 de Setembro</span>
+            </div>
+
+            <!-- Abas Seletoras da Pílula Diária -->
+            <div class="pill-tabs-nav">
+              <button class="pill-tab-btn active" data-pill="nutriente">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span>1. Medicina Integrativa</span>
+              </button>
+              
+              <button class="pill-tab-btn" data-pill="dermatologia">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m4.93 4.93 4.24 4.24"></path>
+                  <path d="m14.83 9.17 4.24-4.24"></path>
+                  <path d="m14.83 14.83 4.24 4.24"></path>
+                  <path d="m9.17 14.83-4.24 4.24"></path>
+                  <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+                <span>2. Lesões &amp; Prevenção</span>
+              </button>
+              
+              <button class="pill-tab-btn" data-pill="beleza">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2.7a7 7 0 0 1 7 7c0 4.4-3.1 8.3-7 8.3s-7-3.9-7-8.3a7 7 0 0 1 7-7Z"></path>
+                  <path d="M12 18v4"></path>
+                  <path d="M8 22h8"></path>
+                  <path d="M15 8a3 3 0 0 0-3-3"></path>
+                </svg>
+                <span>3. Beleza &amp; Skincare</span>
+              </button>
+            </div>
+
+            <!-- Conteúdo Aba 1: Hábito do Dia & Raio-X do Nutriente -->
+            <div class="pill-content-card active" data-pill="nutriente">
+              
+              <!-- Bloco: O Hábito do Dia -->
+              <div class="pill-section-block habit-block">
+                <div class="pill-topic-tag">
+                  <span class="pill-badge-icon">🧘</span>
+                  <span>O HÁBITO DO DIA</span>
+                </div>
+                <h3 class="pill-title habit-title" id="pillHabitTitle">Higiene do Sono &amp; Desconexão Digital</h3>
+                <p class="pill-body-text habit-desc" id="pillHabitDesc">
+                  Para garantir um sono de alta qualidade hoje à noite, experimente <strong>desligar as telas (celular, TV, computador) pelo menos 1 hora antes de deitar</strong>. A luz azul desses aparelhos bloqueia a produção de melatonina, o hormônio que avisa ao seu corpo que é hora de descansar. Troque o feed das redes sociais por um livro físico ou uma música relaxante.
+                </p>
+              </div>
+
+              <!-- Separador Harmônico -->
+              <div class="pill-divider-line"></div>
+
+              <!-- Bloco: Raio-X do Nutriente -->
+              <div class="pill-section-block nutrient-xray-block">
+                <div class="nutrient-xray-header">
+                  <div class="pill-topic-tag xray-tag">
+                    <span class="pill-badge-icon">🔬</span>
+                    <span>RAIO-X DO NUTRIENTE</span>
+                  </div>
+                  <h4 class="xray-nutrient-name" id="pillNutrientName">
+                    <span class="xray-label">Nutriente em Foco:</span>
+                    <strong class="xray-val">Magnésio</strong>
+                    <span class="xray-badge-type" id="pillNutrientType">Mineral Maestro</span>
+                  </h4>
+                </div>
+
+                <!-- Detalhes em Grid: No Organismo + Fontes -->
+                <div class="xray-details-grid">
+                  <div class="xray-item organism-role">
+                    <div class="xray-item-label">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="m9 12 2 2 4-4"></path>
+                      </svg>
+                      <strong>O que faz no organismo:</strong>
+                    </div>
+                    <p class="xray-item-text" id="pillNutrientFunction">
+                      Atua em mais de 300 reações metabólicas essenciais. É fundamental para o relaxamento muscular, síntese de neurotransmissores calmantes (GABA), controle da pressão arterial e melhora expressiva da arquitetura do sono profundo.
+                    </p>
+                  </div>
+
+                  <div class="xray-item food-sources">
+                    <div class="xray-item-label">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                      </svg>
+                      <strong>Fontes alimentares:</strong>
+                    </div>
+                    <p class="xray-item-text" id="pillNutrientSources">
+                      Sementes de abóbora, amêndoas, espinafre cozido, aveia integral e chocolate amargo (70% cacau ou mais).
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Nota / Orientação Médica -->
+              <div class="pill-doctor-note" id="pillDoctorNoteBlock">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-6h2zm0-8h-2V7h2z"></path>
+                </svg>
+                <span><em>Orientação Médica:</em> <span id="pillDoctorNoteText">Níveis ideais de magnésio reduzem o cortisol noturno e favorecem o pico fisiológico do hormônio do crescimento (GH), essencial para a regeneração celular da pele.</span></span>
+              </div>
+
+              <div class="pill-footer">
+                <div class="doctor-signature">
+                  <span class="doctor-name" id="pillDoctorName">Supervisão: Dr. Renato Nakad Gouveia</span>
+                  <span class="doctor-badge" id="pillDoctorArea">Medicina Integrativa</span>
+                </div>
+                <a href="https://wa.me/?text=P%C3%ADlula%20de%20Sa%C3%BAde%20Di%C3%A1ria%20do%20Instituto%20Dermaline%3A%20Higiene%20do%20Sono%20e%20Raio-X%20do%20Magn%C3%A9sio.%20Acompanhe%20as%20dicas%20di%C3%A1rias%20supervisionadas%20em%3A%20institutodermaline.com.br" target="_blank" rel="noopener noreferrer" class="pill-share-btn" aria-label="Compartilhar no WhatsApp">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.777.822 2.796.822 3.182 0 5.768-2.587 5.769-5.766.001-3.182-2.585-5.769-5.769-5.769zm10.222 5.766c-.002 5.647-4.595 10.24-10.245 10.24-1.785 0-3.529-.465-5.068-1.347l-5.632 1.477 1.503-5.485c-.968-1.602-1.48-3.46-1.48-5.385.002-5.646 4.595-10.24 10.245-10.24 5.65 0 10.245 4.593 10.245 10.24zm-1.895 0c0-4.606-3.743-8.349-8.35-8.349-4.608 0-8.35 3.743-8.35 8.349 0 1.579.444 3.091 1.282 4.407l-.887 3.238 3.32-.871c1.261.764 2.71 1.173 4.285 1.173 4.608 0 8.35-3.743 8.35-8.347z"/>
+                  </svg>
+                  <span>Compartilhar Pílula</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Conteúdo Aba 2: Lesões & Prevenção -->
+            <div class="pill-content-card" data-pill="dermatologia">
+              <div class="pill-topic-tag">DERMATOLOGIA CLÍNICA &amp; DIAGNÓSTICO PRECOCE</div>
+              <h3 class="pill-title">A Regra do 'ABCDE' nas Pintas e Sinais</h3>
+              <p class="pill-body-text">
+                O autoexame mensal da pele é a principal ferramenta de proteção. Observe qualquer lesão pigmentada seguindo os cinco parâmetros médicos fundamentais:
+              </p>
+              
+              <div class="pill-highlight-box">
+                <div class="pill-highlight-label">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <strong>Os 5 Sinais de Atenção:</strong>
+                </div>
+                <p><strong>A</strong>ssimetria • <strong>B</strong>ordas irregulares • <strong>C</strong>ores múltiplas • <strong>D</strong>iâmetro superior a 6mm • <strong>E</strong>volução ou sangramento.</p>
+              </div>
+
+              <div class="pill-doctor-note">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-6h2zm0-8h-2V7h2z"></path>
+                </svg>
+                <span><em>Orientação Médica:</em> Qualquer sinal novo ou que apresente coceira, dor ou mudança repentina requer dermatoscopia médica especializada imediata.</span>
+              </div>
+
+              <div class="pill-footer">
+                <div class="doctor-signature">
+                  <span class="doctor-name">Supervisão: Dra. Line Manuelle Gouveia</span>
+                  <span class="doctor-badge">Dermatologia Clínica</span>
+                </div>
+                <a href="https://wa.me/?text=Dica%20de%20Dermatologia%20do%20Instituto%20Dermaline%3A%20Regra%20do%20ABCDE%20para%20preven%C3%A7%C3%A3o%20de%20les%C3%B5es%20de%20pele.%20Veja%20mais%20em%3A%20institutodermaline.com.br" target="_blank" rel="noopener noreferrer" class="pill-share-btn" aria-label="Compartilhar no WhatsApp">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.777.822 2.796.822 3.182 0 5.768-2.587 5.769-5.766.001-3.182-2.585-5.769-5.769-5.769zm10.222 5.766c-.002 5.647-4.595 10.24-10.245 10.24-1.785 0-3.529-.465-5.068-1.347l-5.632 1.477 1.503-5.485c-.968-1.602-1.48-3.46-1.48-5.385.002-5.646 4.595-10.24 10.245-10.24 5.65 0 10.245 4.593 10.245 10.24zm-1.895 0c0-4.606-3.743-8.349-8.35-8.349-4.608 0-8.35 3.743-8.35 8.349 0 1.579.444 3.091 1.282 4.407l-.887 3.238 3.32-.871c1.261.764 2.71 1.173 4.285 1.173 4.608 0 8.35-3.743 8.35-8.347z"/>
+                  </svg>
+                  <span>Compartilhar Dica</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Conteúdo Aba 3: Beleza & Skincare -->
+            <div class="pill-content-card" data-pill="beleza">
+              <div class="pill-topic-tag">BELEZA CONSCIENTE &amp; PROTOCOLOS DIÁRIOS</div>
+              <h3 class="pill-title">Hidratação Estratégica com Ácido Hialurônico</h3>
+              <p class="pill-body-text">
+                O ácido hialurônico tópico não adiciona oleosidade; ele atua como um poderoso ímã biológico hídrico capaz de reter até mil vezes seu peso molecular em água na epiderme.
+              </p>
+              
+              <div class="pill-highlight-box">
+                <div class="pill-highlight-label">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <strong>Técnica de Aplicação 'Damp Skin':</strong>
+                </div>
+                <p>Aplique o sérum com a face levemente umedecida por água termal e sele imediatamente com um protetor com cor mineral para evitar evaporação reversa.</p>
+              </div>
+
+              <div class="pill-doctor-note">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-6h2zm0-8h-2V7h2z"></path>
+                </svg>
+                <span><em>Orientação Médica:</em> A barreira lipídica fortalecida previne inflamações subclínicas (*inflammaging*) e prolonga a durabilidade de injetáveis.</span>
+              </div>
+
+              <div class="pill-footer">
+                <div class="doctor-signature">
+                  <span class="doctor-name">Supervisão: Dra. Line Manuelle Gouveia</span>
+                  <span class="doctor-badge">Dermatologia Estética</span>
+                </div>
+                <a href="https://wa.me/?text=Dica%20de%20Beleza%20do%20Instituto%20Dermaline%3A%20T%C3%A9cnica%20de%20Hidrata%C3%A7%C3%A3o%20em%20Pele%20Umedecida.%20Confira%20em%3A%20institutodermaline.com.br" target="_blank" rel="noopener noreferrer" class="pill-share-btn" aria-label="Compartilhar no WhatsApp">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.777.822 2.796.822 3.182 0 5.768-2.587 5.769-5.766.001-3.182-2.585-5.769-5.769-5.769zm10.222 5.766c-.002 5.647-4.595 10.24-10.245 10.24-1.785 0-3.529-.465-5.068-1.347l-5.632 1.477 1.503-5.485c-.968-1.602-1.48-3.46-1.48-5.385.002-5.646 4.595-10.24 10.245-10.24 5.65 0 10.245 4.593 10.245 10.24zm-1.895 0c0-4.606-3.743-8.349-8.35-8.349-4.608 0-8.35 3.743-8.35 8.349 0 1.579.444 3.091 1.282 4.407l-.887 3.238 3.32-.871c1.261.764 2.71 1.173 4.285 1.173 4.608 0 8.35-3.743 8.35-8.347z"/>
+                  </svg>
+                  <span>Compartilhar Dica</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bloco 2: Artigo Semanal do Especialista -->
+          <div class="journal-card weekly-article-card">
+            
+            <div class="article-badge-row">
+              <span class="article-edition-badge">REFLEXÃO DA SEMANA</span>
+              <span class="reading-time">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Leitura de 3 min
+              </span>
+            </div>
+
+            <h3 class="article-featured-title">
+              O Papel das Mitocôndrias na Longevidade: Como a Medicina Integrativa Redefine o Rejuvenescimento
+            </h3>
+
+            <p class="article-excerpt">
+              Durante décadas, a estética limitou-se à correção externa de rugas e marcas. Hoje, a ciência compreende que o envelhecimento cutâneo e a perda de viço são o reflexo direto da fadiga bioenergética celular. Quando cuidamos do equilíbrio mitocondrial e controlamos o estresse oxidativo sistêmico, a pele recupera sua capacidade autônoma de regeneração, firmeza e vitalidade.
+            </p>
+
+            <div class="article-author-card">
+              <div class="author-avatar-badge">
+                <span>RG</span>
+              </div>
+              <div>
+                <strong class="author-name">Dr. Renato Nakad Gouveia</strong>
+                <span class="author-role">Medicina Integrativa • CRM-DF 17680</span>
+              </div>
+            </div>
+
+            <div class="article-action-buttons">
+              <button class="btn-read-article" id="openArticleBtn">
+                <span>Ler Reflexão Completa</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+
+              <a href="#agendamento" class="btn-schedule-article trigger-booking-modal" data-procedure="Longevidade & Vitalidade">
+                <span>Agendar Avaliação deste Tema</span>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         BANNER CONVITE DE AGENDAMENTO
+         ========================================================================= -->
+    <section class="cta-banner-section" id="agendamento">
+      <div class="container cta-banner-content">
+        <span class="section-tag" style="color: var(--color-gold-light);">Atendimento Exclusivo</span>
+        <h2 class="cta-banner-title">Pronto para vivenciar o cuidado integrado?</h2>
+        <p class="cta-banner-desc">
+          Agende sua consulta com nossos especialistas e receba um plano de tratamento único, concebido especificamente para seus objetivos e sua saúde.
+        </p>
+        <button class="btn-primary-gold trigger-booking-modal" data-procedure="Primeira Consulta">
+          <span>Solicitar Agendamento</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       RODAPÉ 📍
+       ========================================================================= -->
+  <footer class="site-footer" id="contato">
+    <div class="container">
+      
+      <div class="footer-top">
+        
+        <!-- Coluna 1: Marca & Manifesto -->
+        <div class="footer-brand">
+          <a href="#hero" class="brand-logo-link" aria-label="Instituto Dermaline" style="display: inline-block; background: #ffffff; padding: 6px 14px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); margin-bottom: 8px;">
+            <img src="assets/images/logo_dermaline_original.png" alt="Instituto Dermaline - Medicina e Dermatologia Avançada" class="brand-logo-img" style="height: 42px;">
+          </a>
+          <p class="footer-desc">
+            Cuidado médico de alto padrão integrando saúde cutânea, bem-estar funcional e longevidade sustentável.
+          </p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/institutodermaline/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram do Instituto Dermaline">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Coluna 2: Navegação Rápida -->
+        <div>
+          <h4 class="footer-col-title">Navegação</h4>
+          <ul class="footer-links">
+            <li><a href="#hero" class="footer-link">Início</a></li>
+            <li><a href="#sobre" class="footer-link">Sobre o Instituto</a></li>
+            <li><a href="#procedimentos" class="footer-link">Procedimentos</a></li>
+            <li><a href="#corpo-clinico" class="footer-link">Corpo Clínico</a></li>
+            <li><a href="#localizacao" class="footer-link">Localização &amp; Convênios</a></li>
+            <li><a href="#agendamento" class="footer-link trigger-booking-modal">Agendamento</a></li>
+          </ul>
+        </div>
+
+        <!-- Coluna 3: Tratamentos -->
+        <div>
+          <h4 class="footer-col-title">Destaques</h4>
+          <ul class="footer-links">
+            <li><a href="#procedimentos" class="footer-link">Toxina Botulínica</a></li>
+            <li><a href="#procedimentos" class="footer-link">Bioestimuladores</a></li>
+            <li><a href="#procedimentos" class="footer-link">Longevidade Saudável</a></li>
+            <li><a href="#procedimentos" class="footer-link">Equilíbrio Hormonal</a></li>
+            <li><a href="#procedimentos" class="footer-link">Infusões Venosas</a></li>
+          </ul>
+        </div>
+
+        <!-- Coluna 4: Localização & Contato -->
+        <div>
+          <h4 class="footer-col-title">Atendimento</h4>
+          
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Shopping Conjunto Nacional - Torre Vermelha<br>Salas 5040/5042, SDN CNB Conjunto A<br>Asa Norte, Brasília - DF | CEP 70.077-900</span>
+          </div>
+
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>
+              <a href="tel:6139641777">(61) 3964-1777</a><br>
+              <a href="https://wa.me/5561991736660" target="_blank" rel="noopener noreferrer">(61) 99173-6660 (WhatsApp)</a>
+            </span>
+          </div>
+
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>Seg a Sex: 08h00 às 19h00</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Caixa de Informações Regulatórias (CFM / Publicidade Médica) -->
+      <div class="regulatory-notice-box">
+        <div class="regulatory-title">Informações Regulatórias &amp; Ética Médica</div>
+        <p class="regulatory-text">
+          <strong>Responsável Técnica: Dra. Line Manuelle Gouveia — CRM-DF 17449</strong><br>
+          As informações contidas neste website possuem caráter exclusivamente informativo e educativo, não substituindo a consulta e avaliação médica presencial individualizada. Em conformidade com as resoluções vigentes do Conselho Federal de Medicina (CFM) e Código de Ética Médica.
+        </p>
+      </div>
+
+      <!-- Linha Final de Copyright -->
+      <div class="footer-bottom">
+        <span>&copy; 2026 Instituto Dermaline de Medicina LTDA. Todos os direitos reservados.</span>
+        <div class="footer-legal-links">
+          <a href="privacidade.html" target="_blank" rel="noopener noreferrer" class="footer-legal-link">Privacidade</a>
+          <span class="divider-dot">•</span>
+          <a href="termos.html" target="_blank" rel="noopener noreferrer" class="footer-legal-link">Termos de Uso</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       BOTÃO FLUTUANTE DE WHATSAPP 📍
+       ========================================================================= -->
+  <a href="https://wa.me/5561991736660?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20no%20Instituto%20Dermaline." 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="floating-whatsapp" 
+     aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.777.822 2.796.822 3.182 0 5.768-2.587 5.769-5.766.001-3.182-2.585-5.769-5.769-5.769zm10.222 5.766c-.002 5.647-4.595 10.24-10.245 10.24-1.785 0-3.529-.465-5.068-1.347l-5.632 1.477 1.503-5.485c-.968-1.602-1.48-3.46-1.48-5.385.002-5.646 4.595-10.24 10.245-10.24 5.65 0 10.245 4.593 10.245 10.24zm-1.895 0c0-4.606-3.743-8.349-8.35-8.349-4.608 0-8.35 3.743-8.35 8.349 0 1.579.444 3.091 1.282 4.407l-.887 3.238 3.32-.871c1.261.764 2.71 1.173 4.285 1.173 4.608 0 8.35-3.743 8.35-8.347z"/>
+    </svg>
+    <span>Fale Conosco</span>
+  </a>
+
+  <!-- =========================================================================
+       MODAL DE AGENDAMENTO
+       ========================================================================= -->
+  <div class="modal-backdrop" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="Fechar Janela">&times;</button>
+      
+      <div style="margin-bottom: 24px;">
+        <span class="section-tag">Agendamento</span>
+        <h3 class="section-title" id="modalTitle" style="font-size: 1.8rem; margin-bottom: 6px;">Reserve sua Consulta</h3>
+        <p style="font-size: 0.88rem; color: var(--color-text-muted);">
+          Preencha os dados abaixo e nossa concierge médica entrará em contato prontamente via WhatsApp.
+        </p>
+      </div>
+
+      <form id="bookingForm">
+        <div class="form-group">
+          <label class="form-label" for="formName">Seu Nome Completo *</label>
+          <input type="text" id="formName" class="form-input" placeholder="Ex: Patrícia Albuquerque" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="formPhone">WhatsApp / Telefone *</label>
+          <input type="tel" id="formPhone" class="form-input" placeholder="(61) 99999-9999" maxlength="15" inputmode="numeric" autocomplete="tel" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="formProcedure">Procedimento ou Especialidade de Interesse</label>
+          <select id="formProcedure" class="form-select">
+            <option value="Consulta Médica Geral">Consulta Médica / Avaliação Inicial</option>
+            <option value="Consulta em Dermatologia">Consulta em Dermatologia</option>
+            <option value="Consulta em Medicina Integrativa">Consulta em Medicina Integrativa</option>
+            <option value="Toxina Botulínica">Toxina Botulínica</option>
+            <option value="Preenchimentos">Preenchimentos</option>
+            <option value="Bioestimuladores de Colágeno">Bioestimuladores de Colágeno</option>
+            <option value="Laser & Tecnologias">Laser &amp; Tecnologias</option>
+            <option value="Cirurgia Dermatológica">Cirurgia Dermatológica</option>
+            <option value="Emagrecimento Saudável">Emagrecimento Saudável</option>
+            <option value="Longevidade & Vitalidade">Longevidade &amp; Vitalidade</option>
+            <option value="Equilíbrio Hormonal">Equilíbrio Hormonal</option>
+            <option value="Infusões Venosas">Infusões Venosas</option>
+            <option value="Medicina Canabinoide">Medicina Canabinoide</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="formNotes">Mensagem ou Melhor Horário (Opcional)</label>
+          <textarea id="formNotes" class="form-textarea" rows="3" placeholder="Conte-nos brevemente o que você busca ou seus melhores horários..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary-gold" style="width: 100%; justify-content: center; margin-top: 10px;">
+          <span>Continuar no WhatsApp</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL DE LEITURA DO ARTIGO SEMANAL COMPLETO
+       ========================================================================= -->
+  <div class="modal-backdrop" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="articleModalTitle">
+    <div class="modal-card article-modal-card">
+      <button class="modal-close-btn" id="closeArticleBtn" aria-label="Fechar Janela">&times;</button>
+      
+      <div class="article-modal-header">
+        <span class="section-tag">EDITORIAL CIENTÍFICO DERMALINE</span>
+        <h2 id="articleModalTitle" class="article-modal-title">
+          O Papel das Mitocôndrias na Longevidade: Como a Medicina Integrativa Redefine o Rejuvenescimento
+        </h2>
+        <div class="article-modal-meta">
+          <span>Por <strong>Dr. Renato Nakad Gouveia</strong> (CRM-DF 17680)</span>
+          <span>•</span>
+          <span>Medicina Integrativa &amp; Longevidade</span>
+          <span>•</span>
+          <span>Edição Semanal</span>
+        </div>
+      </div>
+
+      <div class="article-modal-body">
+        <p class="article-lead-text">
+          A verdadeira revolução na dermatologia e na medicina do envelhecimento não está em mascarar o tempo, mas em ensinar as células a funcionarem com a potência energética de sua juventude.
+        </p>
+
+        <h3>1. A Usina de Energia Celular e a Pele</h3>
+        <p>
+          As mitocôndrias são as organelas responsáveis por converter nutrientes e oxigênio em ATP (adenosina trifosfato) — a moeda energética fundamental que alimenta cada fibroblasto produtor de colágeno, elastina e matriz extracelular. Com o avanço cronológico, o estresse crônico, a poluição e a glicação alimentar aumentam as espécies reativas de oxigênio, degradando essa usina de vitalidade.
+        </p>
+
+        <h3>2. O Conceito de 'Inflammaging'</h3>
+        <p>
+          Quando a função mitocondrial declina, o organismo entra em um estado subclínico de microinflamação crônica silenciosa chamado <em>inflammaging</em>. Esse processo acelera a degradação do colágeno profundo, provoca perda de sustentação dérmica, predisposição a manchas persistentes e reduz expressivamente a resposta aos procedimentos estéticos convencionais.
+        </p>
+
+        <h3>3. A Interseção com a Medicina Integrativa</h3>
+        <p>
+          No Instituto Dermaline, abordamos essa equação através de três pilares científicos: modulação mitocondrial com antioxidantes nobres (como Coenzima Q10, Ácido Alfa-Lipóico e Resveratrol), soroterapia personalizada de reposição celular e sincronização hormonal fisiológica. O resultado é um organismo biologicamente revitalizado, onde os tratamentos dermatológicos externos encontram um terreno fértil para resultados duradouros e naturais.
+        </p>
+
+        <div class="article-modal-conclusion">
+          <h4>Conclusão &amp; Próximos Passos</h4>
+          <p>
+            Rejuvenescer com maestria não é apenas aplicar um produto ou realizar um procedimento isolado: é restaurar a biologia celular. Convidamos você a vivenciar essa visão holística em sua próxima consulta.
+          </p>
+        </div>
+      </div>
+
+      <div class="article-modal-footer">
+        <a href="#agendamento" class="btn-primary-gold trigger-booking-modal" data-procedure="Longevidade & Vitalidade" style="width: 100%; justify-content: center;">
+          <span>Agendar Consulta de Longevidade Celular</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL DO ACERVO COMPLETO DO DIÁRIO (32 DICAS MÉDICAS) 📚
+       ========================================================================= -->
+  <div class="modal-backdrop" id="acervoModal" role="dialog" aria-modal="true" aria-labelledby="acervoModalTitle">
+    <div class="modal-card acervo-modal-card">
+      <button class="modal-close-btn" id="closeAcervoModalBtn" aria-label="Fechar Acervo">&times;</button>
+      
+      <div class="acervo-modal-header">
+        <span class="section-tag">BIBLIOTECA DE SAÚDE &amp; LONGEVIDADE</span>
+        <h3 class="section-title" id="acervoModalTitle" style="font-size: 1.85rem; margin-bottom: 8px;">Acervo Completo do Diário Dermaline</h3>
+        <p style="font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.6;">
+          Consulte as edições de hábitos saudáveis, fisiologia micronutricional e dermatologia médica supervisionadas pelo nosso corpo clínico.
+        </p>
+
+        <!-- Barra de Busca e Filtros -->
+        <div class="acervo-filter-bar">
+          <div class="acervo-search-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="acervoSearchInput" placeholder="Buscar por nutriente, hábito ou tema (ex: Sono, Magnésio, Colágeno, Manchas)..." autocomplete="off">
+            <button type="button" id="clearAcervoSearch" class="acervo-clear-btn" style="display: none;">&times;</button>
+          </div>
+
+          <div class="acervo-category-pills">
+            <button type="button" class="acervo-cat-btn active" data-cat="all">Todas as Publicações</button>
+            <button type="button" class="acervo-cat-btn" data-cat="nutriente">Medicina Integrativa</button>
+            <button type="button" class="acervo-cat-btn" data-cat="dermatologia">Lesões &amp; Prevenção</button>
+            <button type="button" class="acervo-cat-btn" data-cat="beleza">Beleza &amp; Skincare</button>
+          </div>
+        </div>
+
+        <div class="acervo-status-counter" id="acervoCounter">
+          Exibindo publicações médicas
+        </div>
+      </div>
+
+      <!-- Container com Scroll dos Cards -->
+      <div class="acervo-scroll-area" id="acervoScrollArea">
+        <div class="acervo-grid" id="acervoGrid">
+          <!-- Injetado dinamicamente via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL DO ACERVO DE REFLEXÕES MÉDICAS & ARTIGOS 📖
+       ========================================================================= -->
+  <div class="modal-backdrop" id="reflexoesModal" role="dialog" aria-modal="true" aria-labelledby="reflexoesModalTitle">
+    <div class="modal-card acervo-modal-card">
+      <button class="modal-close-btn" id="closeReflexoesModalBtn" aria-label="Fechar Acervo de Reflexões">&times;</button>
+      
+      <div class="acervo-modal-header">
+        <span class="section-tag">EDITORIAL CIENTÍFICO &amp; ENSAIOS CLÍNICOS</span>
+        <h3 class="section-title" id="reflexoesModalTitle" style="font-size: 1.85rem; margin-bottom: 8px;">Acervo de Reflexões Médicas</h3>
+        <p style="font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.6;">
+          Artigos aprofundados sobre longevidade celular, medicina integrativa e dermatologia clínica com a chancela do nosso corpo clínico.
+        </p>
+
+        <!-- Barra de Busca e Filtros por Autor -->
+        <div class="acervo-filter-bar">
+          <div class="acervo-search-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="reflexoesSearchInput" placeholder="Buscar por tema ou palavra-chave (ex: Mitocôndrias, Inflammaging, Colágeno, Melasma)..." autocomplete="off">
+            <button type="button" id="clearReflexoesSearch" class="acervo-clear-btn" style="display: none;">&times;</button>
+          </div>
+
+          <div class="acervo-category-pills">
+            <button type="button" class="reflexoes-author-btn active" data-author="all">Todas as Reflexões</button>
+            <button type="button" class="reflexoes-author-btn" data-author="renato">Dr. Renato Nakad Gouveia</button>
+            <button type="button" class="reflexoes-author-btn" data-author="line">Dra. Line Manuelle Gouveia</button>
+          </div>
+        </div>
+
+        <div class="acervo-status-counter" id="reflexoesCounter">
+          Exibindo artigos médicos
+        </div>
+      </div>
+
+      <!-- Scroll dos Cards das Reflexões -->
+      <div class="acervo-scroll-area" id="reflexoesScrollArea">
+        <div class="acervo-grid reflexoes-grid" id="reflexoesGrid">
+          <!-- Injetado dinamicamente via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript (Dados Locais + Lógica) -->
+  <script src="conteudo_diario_data.js"></script>
+  <script src="script.js?v=20260914_5"></script>
+</body>
+</html>

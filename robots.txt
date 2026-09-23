@@ -1,0 +1,6 @@
+# Robots.txt para Instituto Dermaline
+User-agent: *
+Allow: /
+
+# Sitemap oficial (substituir pelo domínio final quando publicado)
+# Sitemap: https://institutodermaline.com.br/sitemap.xml

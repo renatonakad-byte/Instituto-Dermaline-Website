@@ -1,0 +1,8 @@
+# Pastas locais de backup e templates antigos
+_backup_arquivos_antigos/
+
+# Arquivos temporários e de sistema
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
