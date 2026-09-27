@@ -450,36 +450,49 @@ button, input, textarea, select {
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(197, 168, 128, 0.18);
+  border: 1px solid rgba(197, 168, 128, 0.22);
   position: relative;
+  background-color: var(--color-bg-pearl);
 }
 
 .image-main-wrapper img {
   width: 100%;
-  height: 480px;
+  height: 490px;
   object-fit: cover;
+  object-position: center 35%;
+  display: block;
   transition: transform 0.6s ease;
 }
 
 .image-main-wrapper:hover img {
-  transform: scale(1.02);
+  transform: scale(1.025);
 }
 
 .image-secondary-wrapper {
   position: absolute;
-  bottom: -35px;
-  right: -25px;
-  width: 58%;
+  bottom: -55px;
+  right: -18px;
+  width: 48%;
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 20px 45px rgba(14, 17, 19, 0.20);
   border: 4px solid #FFFFFF;
+  background-color: var(--color-bg-pearl);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  z-index: 2;
+}
+
+.image-secondary-wrapper:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 26px 52px rgba(14, 17, 19, 0.26);
 }
 
 .image-secondary-wrapper img {
   width: 100%;
-  height: 280px;
+  height: 275px;
   object-fit: cover;
+  object-position: center 25%;
+  display: block;
 }
 
 .about-experience-badge {
@@ -1147,7 +1160,512 @@ button, input, textarea, select {
 }
 
 /* ==========================================================================
-   DOBRA 5: LOCALIZAÇÃO & CONVÊNIOS 🏛️📍
+   DOBRA 5: EXPERIÊNCIA, CAMPANHA & ESTRUTURA DERMALINE 🏛️✨
+   ========================================================================== */
+.gallery-section {
+  padding: 120px 0 100px 0;
+  background-color: var(--color-surface-white);
+  position: relative;
+  border-top: 1px solid rgba(197, 168, 128, 0.15);
+}
+
+/* --- Card de Campanha Sazonal (Dermaline Summer Reset) --- */
+.campaign-banner-card {
+  position: relative;
+  background: linear-gradient(135deg, #15191C 0%, #1D2327 50%, #15191C 100%);
+  border: 1px solid rgba(197, 168, 128, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 48px 56px;
+  color: var(--color-surface-white);
+  box-shadow: 0 24px 50px rgba(14, 17, 19, 0.22), 0 0 0 1px rgba(197, 168, 128, 0.15) inset;
+  margin-bottom: 90px;
+  overflow: hidden;
+}
+
+.campaign-banner-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(197, 168, 128, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Tarja Diagonal / Selo de Pré-Lançamento */
+.campaign-ribbon {
+  position: absolute;
+  top: 26px;
+  right: -55px;
+  transform: rotate(45deg);
+  background: linear-gradient(135deg, #DFCAAB, #C5A880, #A4845C);
+  color: #0E1113;
+  padding: 7px 60px;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  z-index: 3;
+}
+
+.campaign-card-content {
+  position: relative;
+  z-index: 2;
+  max-width: 950px;
+}
+
+.campaign-header {
+  margin-bottom: 22px;
+}
+
+.campaign-tag {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-gold-light);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.campaign-title {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 500;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.01em;
+}
+
+.campaign-subtitle {
+  font-size: 1.12rem;
+  font-weight: 300;
+  color: var(--color-gold-light);
+  margin: 0;
+  font-style: italic;
+}
+
+.campaign-lead {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--color-text-inverse-muted);
+  margin-bottom: 28px;
+}
+
+/* Grade dos Pilares (Face & Body) */
+.campaign-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+.campaign-pillar-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(197, 168, 128, 0.22);
+  border-radius: var(--radius-md);
+  padding: 24px 26px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.campaign-pillar-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(197, 168, 128, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.campaign-pillar-badge {
+  display: inline-block;
+  background: rgba(197, 168, 128, 0.15);
+  color: var(--color-gold-light);
+  border: 1px solid rgba(197, 168, 128, 0.35);
+  border-radius: 4px;
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 3px 10px;
+  margin-bottom: 12px;
+}
+
+.campaign-pillar-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0 0 10px 0;
+}
+
+.campaign-pillar-text {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-text-inverse-muted);
+  margin: 0;
+}
+
+/* Rodapé do Card com Aviso & Botão VIP */
+.campaign-footer-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  flex-wrap: wrap;
+}
+
+.campaign-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 540px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--color-gold-light);
+  opacity: 0.92;
+}
+
+.campaign-note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-gold-light);
+}
+
+.campaign-vip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #DFCAAB 0%, #C5A880 50%, #B8966C 100%);
+  color: #0E1113;
+  padding: 16px 32px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(197, 168, 128, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+}
+
+.campaign-vip-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(197, 168, 128, 0.50);
+  color: #0E1113;
+}
+
+/* --- Galeria do Espaço Dermaline --- */
+.gallery-header-block {
+  margin-bottom: 45px;
+}
+
+.gallery-filter-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.gallery-tab-btn {
+  background: transparent;
+  border: 1px solid rgba(197, 168, 128, 0.28);
+  color: var(--color-text-muted);
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.gallery-tab-btn:hover {
+  border-color: var(--color-gold-primary);
+  color: var(--color-text-main);
+  background: rgba(197, 168, 128, 0.08);
+}
+
+.gallery-tab-btn.active {
+  background: var(--color-charcoal-900);
+  color: var(--color-gold-light);
+  border-color: var(--color-charcoal-900);
+  box-shadow: 0 4px 14px rgba(14, 17, 19, 0.15);
+}
+
+/* Grade da Galeria (5 Fotos) */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.gallery-item {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.gallery-item.hidden-item {
+  display: none !important;
+}
+
+.gallery-img-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(197, 168, 128, 0.18);
+  cursor: pointer;
+  height: 340px;
+  background-color: var(--color-bg-pearl);
+}
+
+.gallery-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14, 17, 19, 0.10) 0%, rgba(14, 17, 19, 0.78) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px;
+  opacity: 0.92;
+  transition: opacity 0.35s ease, background 0.35s ease;
+}
+
+.gallery-img-card:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-img-card:hover .gallery-overlay {
+  opacity: 1;
+  background: linear-gradient(180deg, rgba(14, 17, 19, 0.20) 0%, rgba(14, 17, 19, 0.88) 100%);
+}
+
+.gallery-zoom-icon {
+  align-self: flex-end;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.gallery-img-card:hover .gallery-zoom-icon {
+  transform: scale(1.12);
+  background: var(--color-gold-primary);
+  color: #0E1113;
+}
+
+.gallery-caption-meta {
+  transform: translateY(0);
+  transition: transform 0.35s ease;
+}
+
+.gallery-pill-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-gold-light);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.gallery-item-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* Layout da Grade da Galeria (6 Fotos Harmoniosas em 3x2) */
+@media (min-width: 1025px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+}
+
+/* --- Modal Lightbox Fullscreen --- */
+.gallery-lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.gallery-lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.gallery-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(14, 17, 19, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.gallery-lightbox-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  width: 92%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+
+.gallery-lightbox-image-box {
+  max-width: 100%;
+  max-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(197, 168, 128, 0.25);
+  background-color: #0E1113;
+}
+
+.gallery-lightbox-image-box img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  display: block;
+}
+
+.gallery-lightbox-caption {
+  text-align: center;
+  margin-top: 18px;
+  color: #FFFFFF;
+}
+
+.gallery-lightbox-counter {
+  font-size: 0.80rem;
+  letter-spacing: 0.15em;
+  color: var(--color-gold-light);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.gallery-lightbox-title {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 500;
+  margin: 0 0 6px 0;
+  color: #FFFFFF;
+}
+
+.gallery-lightbox-desc {
+  font-size: 0.92rem;
+  color: var(--color-text-inverse-muted);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.gallery-lightbox-close {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.gallery-lightbox-close:hover {
+  background: var(--color-gold-primary);
+  color: #0E1113;
+  transform: rotate(90deg);
+}
+
+.gallery-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 10;
+}
+
+.gallery-lightbox-nav.prev {
+  left: -60px;
+}
+
+.gallery-lightbox-nav.next {
+  right: -60px;
+}
+
+.gallery-lightbox-nav:hover {
+  background: var(--color-gold-primary);
+  color: #0E1113;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* ==========================================================================
+   DOBRA 6: LOCALIZAÇÃO & CONVÊNIOS 🏛️📍
    ========================================================================== */
 .location-section {
   padding: 120px 0;
@@ -3282,8 +3800,22 @@ button, input, textarea, select {
   .footer-top {
     grid-template-columns: 1fr;
   }
+  .about-images-composition {
+    margin-bottom: 32px;
+  }
+  .image-main-wrapper img {
+    height: 310px;
+    object-position: center 30%;
+  }
   .image-secondary-wrapper {
-    display: none;
+    display: block;
+    width: 45%;
+    right: 8px;
+    bottom: -28px;
+    border-width: 3px;
+  }
+  .image-secondary-wrapper img {
+    height: 155px;
   }
   .about-experience-badge {
     left: 16px;
@@ -3324,5 +3856,91 @@ button, input, textarea, select {
   }
   .article-modal-card {
     padding: 30px 20px;
+  }
+
+  /* Responsividade da Dobra 5 (Campanha & Galeria) */
+  .gallery-section {
+    padding: 80px 0 60px 0;
+  }
+  .campaign-banner-card {
+    padding: 38px 22px 30px 22px;
+    margin-bottom: 60px;
+    border-radius: var(--radius-md);
+  }
+  .campaign-ribbon {
+    top: 18px;
+    right: -65px;
+    font-size: 0.68rem;
+    padding: 5px 60px;
+  }
+  .campaign-title {
+    font-size: 2.05rem;
+    line-height: 1.2;
+  }
+  .campaign-subtitle {
+    font-size: 0.98rem;
+  }
+  .campaign-lead {
+    font-size: 0.95rem;
+  }
+  .campaign-pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .campaign-pillar-item {
+    padding: 20px 18px;
+  }
+  .campaign-footer-action {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+  .campaign-note {
+    max-width: 100%;
+    font-size: 0.82rem;
+  }
+  .campaign-vip-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.88rem;
+    padding: 14px 20px;
+    white-space: normal;
+    text-align: center;
+  }
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .gallery-img-card {
+    height: 290px;
+  }
+  .gallery-lightbox-container {
+    width: 95%;
+  }
+  .gallery-lightbox-image-box {
+    max-height: 60vh;
+  }
+  .gallery-lightbox-image-box img {
+    max-height: 60vh;
+  }
+  .gallery-lightbox-nav {
+    width: 40px;
+    height: 40px;
+  }
+  .gallery-lightbox-nav.prev {
+    left: -12px;
+  }
+  .gallery-lightbox-nav.next {
+    right: -12px;
+  }
+  .gallery-lightbox-close {
+    top: -42px;
+    right: 0;
+  }
+  .gallery-lightbox-title {
+    font-size: 1.25rem;
+  }
+  .gallery-lightbox-desc {
+    font-size: 0.84rem;
   }
 }

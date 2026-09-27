@@ -1217,5 +1217,114 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  /* =========================================================================
+     MÓDULO DE GALERIA E LIGHTBOX DO INSTITUTO DERMALINE 🏛️🖼️
+     ========================================================================= */
+  const initGalleryLightbox = () => {
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+    const tabBtns = document.querySelectorAll('.gallery-tab-btn');
+    const modal = document.getElementById('galleryLightbox');
+    if (!modal || galleryItems.length === 0) return;
+
+    const backdrop = document.getElementById('galleryLightboxBackdrop');
+    const closeBtn = document.getElementById('galleryLightboxClose');
+    const prevBtn = document.getElementById('galleryLightboxPrev');
+    const nextBtn = document.getElementById('galleryLightboxNext');
+    const imgEl = document.getElementById('galleryLightboxImg');
+    const counterEl = document.getElementById('galleryLightboxCounter');
+    const titleEl = document.getElementById('galleryLightboxTitle');
+    const descEl = document.getElementById('galleryLightboxDesc');
+
+    let currentVisibleItems = [...galleryItems];
+    let currentIndex = 0;
+
+    // Filtros por Categoria
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        const filter = btn.getAttribute('data-filter');
+        currentVisibleItems = [];
+
+        galleryItems.forEach(item => {
+          const cat = item.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            item.classList.remove('hidden-item');
+            currentVisibleItems.push(item);
+          } else {
+            item.classList.add('hidden-item');
+          }
+        });
+      });
+    });
+
+    const updateLightbox = (index) => {
+      if (currentVisibleItems.length === 0) return;
+      if (index < 0) index = currentVisibleItems.length - 1;
+      if (index >= currentVisibleItems.length) index = 0;
+      currentIndex = index;
+
+      const item = currentVisibleItems[currentIndex];
+      const src = item.getAttribute('data-src');
+      const title = item.getAttribute('data-title') || '';
+      const desc = item.getAttribute('data-desc') || '';
+
+      imgEl.src = src;
+      imgEl.alt = title;
+      titleEl.textContent = title;
+      descEl.textContent = desc;
+      counterEl.textContent = `${currentIndex + 1} / ${currentVisibleItems.length}`;
+    };
+
+    const openLightbox = (item) => {
+      const idx = currentVisibleItems.indexOf(item);
+      currentIndex = idx >= 0 ? idx : 0;
+      updateLightbox(currentIndex);
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeLightbox = () => {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => openLightbox(item));
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if (backdrop) backdrop.addEventListener('click', closeLightbox);
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateLightbox(currentIndex - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateLightbox(currentIndex + 1);
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') updateLightbox(currentIndex - 1);
+      if (e.key === 'ArrowRight') updateLightbox(currentIndex + 1);
+    });
+  };
+
   initTeamSectionAnimation();
+  initGalleryLightbox();
 });
