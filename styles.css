@@ -3794,6 +3794,11 @@ button, input, textarea, select {
     height: 320px;
     min-height: 260px;
   }
+  /* Enquadramento ideal do rosto da Dra. Line no celular */
+  .team-card[data-doctor*="Line"] .team-photo-wrapper img,
+  .team-photo-draline {
+    object-position: center 22%;
+  }
   .team-info {
     padding: 24px 20px;
   }
