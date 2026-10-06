@@ -323,28 +323,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 9.0 Controle de Lançamento & Cronologia Progressiva
       const config = data.config || {};
+      const agora = new Date();
       let diasDecorridos = 0;
 
       if (config.data_publicacao_site && String(config.data_publicacao_site).trim().length >= 10) {
         const [ano, mes, dia] = config.data_publicacao_site.trim().split('-').map(Number);
         const dataInicio = new Date(ano, mes - 1, dia, 0, 0, 0);
-        const agora = new Date();
         const diffMs = agora.getTime() - dataInicio.getTime();
         if (diffMs > 0) {
           diasDecorridos = Math.floor(diffMs / (1000 * 60 * 60 * 24));
         } else {
           diasDecorridos = 0; // Se a data for hoje ou futura, inicia no Dia 1
         }
+      } else {
+        // Fallback dinâmico: se a data estiver vazia, rotaciona automaticamente usando o dia do ano
+        const inicioAno = new Date(agora.getFullYear(), 0, 1);
+        diasDecorridos = Math.floor((agora.getTime() - inicioAno.getTime()) / (1000 * 60 * 60 * 24));
       }
 
-      // 9.1 Atualizar Artigo Semanal (1 artigo novo a cada 7 dias, sem repetição precoce)
+      // 9.1 Atualizar Artigo Semanal (1 artigo novo a cada 7 dias, rotativo)
       const todosArtigos = (data.acervo_artigos && data.acervo_artigos.length > 0) 
         ? data.acervo_artigos 
         : (data.artigo_semana ? [data.artigo_semana] : []);
 
       if (todosArtigos.length > 0) {
         const semanaAtual = Math.floor(diasDecorridos / 7);
-        const artIndex = Math.min(semanaAtual, todosArtigos.length - 1);
+        const artIndex = (config.rotacao_automatica !== false)
+          ? (semanaAtual % todosArtigos.length)
+          : Math.min(semanaAtual, todosArtigos.length - 1);
         const art = todosArtigos[artIndex];
 
         const titleEl = document.querySelector('.article-featured-title');
@@ -387,6 +393,24 @@ document.addEventListener('DOMContentLoaded', () => {
       // 9.2 Função Modular para Renderizar Dica no Painel Principal
       const renderTipToMain = (tip, targetCategory = null) => {
         if (!tip) return;
+
+        // Atualiza a data dinâmica no topo do card
+        const pillDateEl = document.getElementById('pillCurrentDate');
+        if (pillDateEl) {
+          try {
+            const now = new Date();
+            const options = { weekday: 'long', day: 'numeric', month: 'long' };
+            let formattedDate = new Intl.DateTimeFormat('pt-BR', options).format(now);
+            formattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+            pillDateEl.textContent = formattedDate;
+          } catch (e) {}
+        }
+
+        // Atualiza o selo da edição atual da pílula
+        const liveBadgeText = document.querySelector('.pill-live-badge span:not(.pulse-indicator)');
+        if (liveBadgeText && tip.dia) {
+          liveBadgeText.textContent = `Pílula do Dia • Edição #${String(tip.dia).padStart(2, '0')} • Atualizado Hoje`;
+        }
 
         // Atualizar Card Nutriente / Hábito & Raio-X
         const nutCard = document.querySelector('.pill-content-card[data-pill="nutriente"]');
@@ -495,23 +519,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       };
 
-      // 9.3 Rotação Diária Automática a Partir do Dia 1 (Sem Repetir e Sem Vazamento de Edições Futuras)
+      // 9.3 Rotação Diária Automática a Partir do Dia 1 (Rotação Contínua sem Travar)
       if (data.dicas_diarias && data.dicas_diarias.length > 0) {
         const totalDicas = data.dicas_diarias.length;
-        // Pega a edição pelo dia decorrido desde o lançamento; permanece na última até novas serem inseridas
-        const postIndex = Math.min(diasDecorridos, totalDicas - 1);
+        // Pega a edição pelo dia decorrido; rotaciona ciclicamente se rotacao_automatica for true
+        const postIndex = (config.rotacao_automatica !== false)
+          ? (diasDecorridos % totalDicas)
+          : Math.min(diasDecorridos, totalDicas - 1);
         const tipToday = data.dicas_diarias[postIndex];
 
         renderTipToMain(tipToday);
 
-        // 9.4 Acervo de Dicas: Apenas as edições JÁ PUBLICADAS até a data de hoje ficam disponíveis no acervo!
-        const dicasLiberadasNoAcervo = data.dicas_diarias.slice(0, Math.min(diasDecorridos + 1, totalDicas));
-        initAcervoSystem(dicasLiberadasNoAcervo, renderTipToMain);
+        // 9.4 Acervo de Dicas: Disponibiliza todo o acervo completo para consulta, filtros e busca
+        initAcervoSystem(data.dicas_diarias, renderTipToMain);
 
-        // 9.5 Acervo de Reflexões Médicas: Apenas os artigos semanais JÁ PUBLICADOS até a semana atual ficam disponíveis no acervo!
-        const semanaAtual = Math.floor(diasDecorridos / 7);
-        const artigosLiberadosNoAcervo = todosArtigos.slice(0, Math.min(semanaAtual + 1, todosArtigos.length));
-        initReflexoesSystem(artigosLiberadosNoAcervo);
+        // 9.5 Acervo de Reflexões Médicas: Disponibiliza os artigos completos para consulta
+        initReflexoesSystem(todosArtigos);
       }
     } catch (err) {
       console.error('Error in loadDailyContent:', err);

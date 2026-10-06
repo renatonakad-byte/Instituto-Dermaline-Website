@@ -2,7 +2,7 @@
   "config": {
     "rotacao_automatica": true,
     "total_dias": 32,
-    "data_publicacao_site": "",
+    "data_publicacao_site": "2026-10-01",
     "descricao": "Base de dados do Diário Dermaline gerada com inteligência científica e supervisionada pelo corpo clínico."
   },
   "artigo_semana": {
