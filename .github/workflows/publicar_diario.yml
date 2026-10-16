@@ -1,0 +1,45 @@
+name: Publicacao Diaria Dermaline
+
+on:
+  schedule:
+    # Roda todos os dias às 08:00 da manhã no Horário de Brasília (11:00 UTC)
+    - cron: '0 11 * * *'
+  # Permite disparar manualmente pelo painel do GitHub a qualquer hora
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Instalar dependências gráficas e de rede
+        run: |
+          pip install Pillow requests
+
+      - name: Gerar Card Visual e Publicar nas Redes Sociais
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID || '457804507635117' }}
+          INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID || '17841404225729043' }}
+        run: |
+          python scripts/publicar_redes.py
+
+      - name: Salvar Card Gerado no Repositório
+        run: |
+          git config --global user.name "Dermaline Bot"
+          git config --global user.email "bot@institutodermaline.com.br"
+          git add assets/images/cards/
+          git diff --staged --quiet || (git commit -m "Auto: Card diário atualizado [skip ci]" && git push)
