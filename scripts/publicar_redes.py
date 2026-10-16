@@ -386,14 +386,24 @@ def main():
     dia, dica, artigo = carregar_conteudo()
     print(f"[*] Dia / Edição Atual: #{dia:02d} ({dica.get('dia_semana', '')})")
 
+    apenas_card = "--apenas-card" in sys.argv
+    apenas_publicar = "--apenas-publicar" in sys.argv
+
     # 1. Gera o Card Visual 1080x1080
-    card_path, card_hoje_path = gerar_card_imagem(dia, dica)
+    if not apenas_publicar:
+        card_path, card_hoje_path = gerar_card_imagem(dia, dica)
+    else:
+        card_path = os.path.join(CARDS_DIR, f"card_diario_edicao_{dia:02d}.png")
+        card_hoje_path = os.path.join(CARDS_DIR, "card_hoje.png")
+
+    if apenas_card:
+        print("[✓] Etapa de geração do card concluída.")
+        return
 
     # 2. Monta a Legenda
     legenda = montar_legenda(dia, dica)
 
     # 3. URL pública da imagem no GitHub para o Instagram
-    # (O Instagram exige uma URL pública HTTPS da imagem)
     image_url_publica = (
         f"https://raw.githubusercontent.com/{REPO_SLUG}/{BRANCH_NAME}/assets/images/cards/card_hoje.png"
     )
