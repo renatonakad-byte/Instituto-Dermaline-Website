@@ -187,7 +187,6 @@ def gerar_card_imagem(dia, dica):
     # 3. Os Três Pilares da Dica Diária
     pilares = [
         {
-            "icone": "🌿",
             "tag": "MEDICINA INTEGRATIVA & NUTRIÇÃO CELULAR",
             "titulo": dica["nutriente"]["habito_titulo"],
             "destaque": f"Nutriente: {dica['nutriente']['nutriente_nome']} ({dica['nutriente']['nutriente_tipo']})",
@@ -195,7 +194,6 @@ def gerar_card_imagem(dia, dica):
             "medico": dica["nutriente"]["medico"]
         },
         {
-            "icone": "🔬",
             "tag": "DERMATOLOGIA CLÍNICA",
             "titulo": dica["dermatologia"]["titulo"],
             "destaque": dica["dermatologia"]["destaque_texto"],
@@ -203,7 +201,6 @@ def gerar_card_imagem(dia, dica):
             "medico": dica["dermatologia"]["medico"]
         },
         {
-            "icone": "✨",
             "tag": "BELEZA CONSCIENTE & PROTOCOLOS",
             "titulo": dica["beleza"]["titulo"],
             "destaque": dica["beleza"]["destaque_texto"],
@@ -235,8 +232,8 @@ def gerar_card_imagem(dia, dica):
             fill=COLOR_GOLD
         )
 
-        # Cabeçalho do Pilar (Ícone + Tag)
-        tag_texto = f"{p['icone']} {p['tag']}"
+        # Cabeçalho do Pilar (Tag em ouro nobre)
+        tag_texto = p['tag']
         draw.text((card_x + 22, bloco_y + 14), tag_texto, font=font_corpo, fill=COLOR_GOLD)
 
         # Título do Pilar
