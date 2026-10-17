@@ -303,7 +303,7 @@ Pílula Diária de Saúde, Dermatologia & Longevidade
 ---
 🏥 Instituto Dermaline | Medicina Integrativa & Dermatologia Avançada
 👨‍⚕️ Dr. Renato Nakad Gouveia | CRM-DF 17680
-👩‍⚕️ Dra. Line Manuelle Gouveia | CRM-DF 17680
+👩‍⚕️ Dra. Line Manuelle Gouveia | CRM-DF 17449
 🌐 Acesse o acervo completo e artigos científicos no site: institutodermaline.com.br
 📍 Brasília - DF
 
