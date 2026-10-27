@@ -7,6 +7,7 @@ Este documento reúne todas as informações, decisões técnicas, dados cadastr
 ## 📋 1. Identificação & Responsabilidade Técnica
 
 * **Nome Institucional:** Instituto Dermaline de Medicina LTDA
+* **CNPJ:** 18.188.635/0001-20
 * **Conceito Central:** Cuidado que transforma de dentro para fora (Integração entre Dermatologia Avançada e Medicina Integrativa com foco em Longevidade)
 * **Responsável Técnica (RT):** Dra. Line Manuelle Gouveia — **CRM-DF 17449**
 * **Conformidade Ética:** Rigorosamente alinhado às resoluções do Conselho Federal de Medicina (**Resolução CFM nº 2.336/2023** e Código de Ética Médica).
