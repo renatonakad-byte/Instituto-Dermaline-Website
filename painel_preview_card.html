@@ -490,12 +490,16 @@
     }
     window.addEventListener('resize', adjustScale);
 
-    // Carrega opções de 1 a 32
-    for (let i = 1; i <= 32; i++) {
+    // Carrega opções dinamicamente do banco de dados (todas as edições disponíveis)
+    const totalDicas = (window.DERMALINE_CONTEUDO_DATA && window.DERMALINE_CONTEUDO_DATA.dicas_diarias) 
+      ? window.DERMALINE_CONTEUDO_DATA.dicas_diarias.length 
+      : 64;
+
+    for (let i = 1; i <= totalDicas; i++) {
       const opt = document.createElement('option');
       opt.value = i;
       opt.textContent = `Edição #${String(i).padStart(2, '0')}`;
-      if (i === 16) opt.selected = true;
+      if (i === 33) opt.selected = true;
       editionSelect.appendChild(opt);
     }
 

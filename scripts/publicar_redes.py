@@ -44,7 +44,8 @@ def carregar_conteudo():
         dados = json.load(f)
 
     config = dados.get("config", {})
-    total_dias = config.get("total_dias", 32)
+    dicas = dados.get("dicas_diarias", [])
+    total_dias = config.get("total_dias", len(dicas) if dicas else 64)
     data_pub_str = config.get("data_publicacao_site", "")
 
     # Se houver data de publicação configurada, calcula o dia relativo
