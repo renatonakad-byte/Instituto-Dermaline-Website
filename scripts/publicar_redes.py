@@ -17,6 +17,8 @@ from PIL import Image, ImageDraw, ImageFont
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 CONTEUDO_PATH = os.path.join(BASE_DIR, "conteudo_diario.json")
 CARDS_DIR = os.path.join(BASE_DIR, "assets", "images", "cards")
+TEMPLATES_DIR = os.path.join(BASE_DIR, "assets", "images", "templates")
+FONTS_DIR = os.path.join(BASE_DIR, "assets", "fonts")
 LOGO_PATH = os.path.join(BASE_DIR, "assets", "images", "logo_dermaline_original.png")
 
 # Credenciais da Meta (obtidas via variáveis de ambiente / GitHub Secrets)
@@ -26,14 +28,14 @@ INSTAGRAM_ACCOUNT_ID = os.environ.get("INSTAGRAM_ACCOUNT_ID", "17841404225729043
 REPO_SLUG = os.environ.get("GITHUB_REPOSITORY", "renatonakad-byte/Instituto-Dermaline-Website")
 BRANCH_NAME = os.environ.get("GITHUB_REF_NAME", "main")
 
-# Paleta Visual do Instituto Dermaline
-COLOR_BG_DARK = (14, 17, 19)          # #0E1113 - Carvão nobre
-COLOR_BG_CARD = (21, 25, 28)          # #15191C - Superfície do card
-COLOR_GOLD = (197, 168, 128)          # #C5A880 - Ouro primário
-COLOR_GOLD_LIGHT = (223, 202, 171)    # #DFCAAB - Ouro claro
-COLOR_GOLD_BORDER = (197, 168, 128, 90)
-COLOR_WHITE = (250, 249, 246)         # #FAF9F6 - Marfim
-COLOR_TEXT_MUTED = (160, 168, 176)    # Cinza elegante
+# Paleta Visual Editorial de Alto Padrão (Warm Champagne & Marfim Nobre)
+COLOR_BG_IVORY = (250, 248, 244)       # #FAF8F4 - Marfim nobre luminoso
+COLOR_GOLD = (197, 168, 128)           # #C5A880 - Ouro acetinado Dermaline
+COLOR_GOLD_DARK = (154, 123, 80)       # #9A7B50 - Ouro profundo
+COLOR_CHARCOAL_DARK = (24, 28, 32)     # #181C20 - Carvão profundo elegante
+COLOR_CHARCOAL_TEXT = (61, 68, 74)     # #3D444A - Texto editorial
+COLOR_MUTED = (107, 114, 128)          # #6B7280 - Subtexto sutil
+COLOR_WHITE = (255, 255, 255)
 
 
 def carregar_conteudo():
@@ -93,179 +95,168 @@ def quebrar_texto(draw, texto, font, max_largura):
 
 
 def obter_fontes():
-    """Tenta carregar fontes elegantes do sistema ou usa fontes padrão como fallback."""
-    fontes_serif = ["georgia.ttf", "times.ttf", "timesbd.ttf", "DejaVuSerif.ttf"]
-    fontes_sans = ["arial.ttf", "tahoma.ttf", "DejaVuSans.ttf"]
-    
-    font_titulo = None
-    font_sub = None
-    font_corpo = None
-    font_destaque = None
+    """Carrega fontes nobres da pasta assets/fonts ou fontes do sistema como fallback."""
+    font_script_path = os.path.join(FONTS_DIR, "AlexBrush-Regular.ttf")
+    font_serif_path = os.path.join(FONTS_DIR, "Georgia-Bold.ttf")
+    font_sans_bold_path = os.path.join(FONTS_DIR, "SegoeUI-Bold.ttf")
+    font_sans_path = os.path.join(FONTS_DIR, "SegoeUI.ttf")
 
-    for nome in fontes_serif:
-        try:
-            font_titulo = ImageFont.truetype(nome, 38)
-            font_sub = ImageFont.truetype(nome, 26)
-            break
-        except Exception:
-            continue
+    def carregar(caminho, tamanho, fallbacks):
+        if os.path.exists(caminho):
+            try:
+                return ImageFont.truetype(caminho, tamanho)
+            except Exception:
+                pass
+        for nome in fallbacks:
+            try:
+                return ImageFont.truetype(nome, tamanho)
+            except Exception:
+                continue
+        return ImageFont.load_default()
 
-    for nome in fontes_sans:
-        try:
-            font_corpo = ImageFont.truetype(nome, 22)
-            font_destaque = ImageFont.truetype(nome, 25)
-            break
-        except Exception:
-            continue
+    font_script = carregar(font_script_path, 58, ["AlexBrush-Regular.ttf", "segoesc.ttf", "georgiai.ttf"])
+    font_titulo = carregar(font_serif_path, 40, ["georgiab.ttf", "timesbd.ttf", "DejaVuSerif-Bold.ttf"])
+    font_corpo = carregar(font_sans_path, 21, ["segoeui.ttf", "arial.ttf", "DejaVuSans.ttf"])
+    font_destaque = carregar(font_sans_bold_path, 21, ["segoeuib.ttf", "arialbd.ttf", "DejaVuSans-Bold.ttf"])
+    font_cta = carregar(font_sans_bold_path, 20, ["segoeuib.ttf", "arialbd.ttf", "DejaVuSans-Bold.ttf"])
+    font_pequena = carregar(font_sans_path, 15, ["segoeui.ttf", "arial.ttf", "DejaVuSans.ttf"])
 
-    if not font_titulo:
-        font_titulo = ImageFont.load_default()
-        font_sub = ImageFont.load_default()
-        font_corpo = ImageFont.load_default()
-        font_destaque = ImageFont.load_default()
+    return font_script, font_titulo, font_corpo, font_destaque, font_cta, font_pequena
 
-    return font_titulo, font_sub, font_corpo, font_destaque
+
+def criar_mascara_gradiente(largura, altura):
+    """Cria uma máscara suave marfim/champagne para o lado esquerdo do card."""
+    grad = Image.new("RGBA", (largura, altura), (0, 0, 0, 0))
+    cor_rgb = COLOR_BG_IVORY
+    x_solid = 440
+    x_fade = 690
+
+    for x in range(largura):
+        if x <= x_solid:
+            alpha = 248
+        elif x < x_fade:
+            import math
+            t = (x - x_solid) / (x_fade - x_solid)
+            factor = (1.0 + math.cos(t * math.pi)) / 2.0
+            alpha = int(248 * factor)
+        else:
+            alpha = 0
+
+        if alpha > 0:
+            coluna = Image.new("RGBA", (1, altura), (*cor_rgb, alpha))
+            grad.paste(coluna, (x, 0))
+
+    return grad
 
 
 def gerar_card_imagem(dia, dica):
-    """Gera um card quadrado 1080x1080 com design editorial premium do Instituto Dermaline."""
+    """Gera um card quadrado 1080x1080 com design editorial premium e alta conversão."""
     os.makedirs(CARDS_DIR, exist_ok=True)
     card_path = os.path.join(CARDS_DIR, f"card_diario_edicao_{dia:02d}.png")
     card_hoje_path = os.path.join(CARDS_DIR, "card_hoje.png")
 
     largura, altura = 1080, 1080
-    img = Image.new("RGBA", (largura, altura), COLOR_BG_DARK)
+
+    # 1. Carrega o template editorial (rotaciona entre os modelos estéticos)
+    template_idx = ((dia - 1) % 3) + 1
+    template_path = os.path.join(TEMPLATES_DIR, f"bg_editorial_{template_idx}.jpg")
+    if os.path.exists(template_path):
+        base_img = Image.open(template_path).convert("RGBA")
+        if base_img.size != (largura, altura):
+            base_img = base_img.resize((largura, altura), Image.Resampling.LANCZOS)
+    else:
+        base_img = Image.new("RGBA", (largura, altura), COLOR_BG_IVORY)
+
+    # 2. Aplica máscara de luminosidade/gradiente no lado esquerdo para legibilidade
+    gradiente = criar_mascara_gradiente(largura, altura)
+    img = Image.alpha_composite(base_img, gradiente)
     draw = ImageDraw.Draw(img)
 
-    # 1. Moldura Dourada Sofisticada
-    margem = 40
-    draw.rectangle(
-        [(margem, margem), (largura - margem, altura - margem)],
-        outline=COLOR_GOLD,
-        width=2
-    )
-    # Borda interna fina
-    margem_interna = 46
-    draw.rectangle(
-        [(margem_interna, margem_interna), (largura - margem_interna, altura - margem_interna)],
-        outline=(197, 168, 128, 50),
-        width=1
-    )
+    # 3. Moldura sutil elegante (padrão marcas de luxo)
+    draw.rectangle([(36, 36), (largura - 36, altura - 36)], outline=(197, 168, 128, 100), width=1)
 
-    # 2. Logotipo e Cabeçalho Superior
-    y_cursor = 70
-    if os.path.exists(LOGO_PATH):
-        try:
-            logo = Image.open(LOGO_PATH).convert("RGBA")
-            # Redimensiona mantendo proporção
-            logo.thumbnail((90, 90), Image.Resampling.LANCZOS)
-            x_logo = (largura - logo.width) // 2
-            img.paste(logo, (x_logo, y_cursor), logo)
-            y_cursor += logo.height + 15
-        except Exception as e:
-            print(f"[!] Aviso logo: {e}")
-            y_cursor += 30
+    # 4. Fontes
+    font_script, font_titulo, font_corpo, font_destaque, font_cta, font_pequena = obter_fontes()
 
-    font_titulo, font_sub, font_corpo, font_destaque = obter_fontes()
+    # 5. Topo: Handle oficial e badge de edição
+    draw.text((72, 66), "@institutodermaline", font=font_destaque, fill=(45, 51, 56))
 
-    # Nome da Clínica
-    texto_clinica = "INSTITUTO DERMALINE"
-    bbox = draw.textbbox((0, 0), texto_clinica, font=font_sub)
-    draw.text(((largura - (bbox[2] - bbox[0])) // 2, y_cursor), texto_clinica, font=font_sub, fill=COLOR_GOLD_LIGHT)
-    y_cursor += 36
+    tag_edicao = f"EDIÇÃO #{dia:02d}"
+    bbox_ed = draw.textbbox((0, 0), tag_edicao, font=font_pequena)
+    ed_w = bbox_ed[2] - bbox_ed[0] + 20
+    tag_x = 350
+    draw.rounded_rectangle([(tag_x, 66), (tag_x + ed_w, 92)], radius=13, fill=(197, 168, 128, 45), outline=(197, 168, 128, 110), width=1)
+    draw.text((tag_x + 10, 71), tag_edicao, font=font_pequena, fill=COLOR_GOLD_DARK)
 
-    # Tag Badge: Pílula Diária • Edição #X
-    tag_edicao = f"DIÁRIO DE SAÚDE & LONGEVIDADE • EDIÇÃO #{dia:02d}"
-    bbox_tag = draw.textbbox((0, 0), tag_edicao, font=font_corpo)
-    draw.text(((largura - (bbox_tag[2] - bbox_tag[0])) // 2, y_cursor), tag_edicao, font=font_corpo, fill=COLOR_TEXT_MUTED)
-    y_cursor += 45
-
-    # Linha divisória dourada
-    draw.line([(margem + 150, y_cursor), (largura - margem - 150, y_cursor)], fill=COLOR_GOLD, width=1)
-    y_cursor += 35
-
-    # 3. Os Três Pilares da Dica Diária
-    pilares = [
-        {
-            "tag": "MEDICINA INTEGRATIVA & NUTRIÇÃO CELULAR",
-            "titulo": dica["nutriente"]["habito_titulo"],
-            "destaque": f"Nutriente: {dica['nutriente']['nutriente_nome']} ({dica['nutriente']['nutriente_tipo']})",
-            "descricao": dica["nutriente"]["habito_descricao"],
-            "medico": dica["nutriente"]["medico"]
-        },
-        {
-            "tag": "DERMATOLOGIA CLÍNICA",
-            "titulo": dica["dermatologia"]["titulo"],
-            "destaque": dica["dermatologia"]["destaque_texto"],
-            "descricao": dica["dermatologia"]["descricao"],
-            "medico": dica["dermatologia"]["medico"]
-        },
-        {
-            "tag": "BELEZA CONSCIENTE & PROTOCOLOS",
-            "titulo": dica["beleza"]["titulo"],
-            "destaque": dica["beleza"]["destaque_texto"],
-            "descricao": dica["beleza"]["descricao"],
-            "medico": dica["beleza"]["medico"]
-        }
+    # 6. Eyebrow Cursivo em Dourado Luxo
+    script_titles = [
+        "Pílula de Longevidade",
+        "Segredos da Longevidade",
+        "Dermatologia & Saúde",
+        "Beleza & Vitalidade Celular",
+        "Medicina Integrativa"
     ]
+    eyebrow = script_titles[(dia - 1) % len(script_titles)]
+    draw.text((72, 124), eyebrow, font=font_script, fill=COLOR_GOLD_DARK)
 
-    card_largura = largura - (margem * 2) - 60
-    card_x = margem + 30
-    bloco_altura = 190
+    # 7. Gancho Principal (Headline de Alto Impacto)
+    titulo = dica["nutriente"]["habito_titulo"]
+    linhas_titulo = quebrar_texto(draw, titulo, font_titulo, 530)
+    y_cur = 202
+    for linha in linhas_titulo[:2]:
+        draw.text((72, y_cur), linha, font=font_titulo, fill=COLOR_CHARCOAL_DARK)
+        y_cur += 50
 
-    for i, p in enumerate(pilares):
-        bloco_y = y_cursor + (i * (bloco_altura + 15))
-        
-        # Caixa de fundo sutil para cada pilar
-        draw.rounded_rectangle(
-            [(card_x, bloco_y), (card_x + card_largura, bloco_y + bloco_altura)],
-            radius=12,
-            fill=COLOR_BG_CARD,
-            outline=(197, 168, 128, 60),
-            width=1
-        )
+    # 8. Teaser Sucinto e Magnético
+    y_cur += 8
+    desc = dica["nutriente"]["habito_descricao"]
+    if len(desc) > 130:
+        desc = desc[:127] + "..."
+    linhas_desc = quebrar_texto(draw, desc, font_corpo, 490)
+    for linha in linhas_desc[:2]:
+        draw.text((72, y_cur), linha, font=font_corpo, fill=COLOR_CHARCOAL_TEXT)
+        y_cur += 28
 
-        # Barra lateral dourada de destaque
-        draw.rounded_rectangle(
-            [(card_x, bloco_y), (card_x + 6, bloco_y + bloco_altura)],
-            radius=3,
-            fill=COLOR_GOLD
-        )
+    # 9. As 3 Pílulas Rápidas do Dia (Cards Minimalistas com Destaque Dourado)
+    y_cur += 16
+    itens = [
+        ("1. NUTRIÇÃO CELULAR", f"{dica['nutriente']['nutriente_nome']} • {dica['nutriente']['nutriente_tipo']}"),
+        ("2. DERMATOLOGIA", f"{dica['dermatologia']['titulo']}"),
+        ("3. BELEZA ATIVA", f"{dica['beleza']['titulo']}")
+    ]
+    card_w = 500
+    card_h = 42
+    for cat, val in itens:
+        draw.rounded_rectangle([(72, y_cur), (72 + card_w, y_cur + card_h)], radius=8, fill=(255, 255, 255, 215), outline=(197, 168, 128, 80), width=1)
+        draw.rounded_rectangle([(72, y_cur), (76, y_cur + card_h)], radius=3, fill=COLOR_GOLD)
+        draw.text((88, y_cur + 11), cat, font=font_pequena, fill=COLOR_GOLD_DARK)
+        if len(val) > 34:
+            val = val[:32] + "..."
+        draw.text((230, y_cur + 11), val, font=font_corpo, fill=(45, 51, 56))
+        y_cur += 50
 
-        # Cabeçalho do Pilar (Tag em ouro nobre)
-        tag_texto = p['tag']
-        draw.text((card_x + 22, bloco_y + 14), tag_texto, font=font_corpo, fill=COLOR_GOLD)
+    # 10. Botão de Chamada para Ação (CTA Capsule Luxo)
+    y_cur += 14
+    btn_w = 440
+    btn_h = 56
+    draw.rounded_rectangle([(72, y_cur), (72 + btn_w, y_cur + btn_h)], radius=28, fill=COLOR_GOLD)
+    texto_btn = "Ler Matéria Completa no Diário  ↗"
+    bbox_btn = draw.textbbox((0, 0), texto_btn, font=font_cta)
+    w_btn_txt = bbox_btn[2] - bbox_btn[0]
+    draw.text((72 + (btn_w - w_btn_txt) // 2, y_cur + 15), texto_btn, font=font_cta, fill=(255, 255, 255))
 
-        # Título do Pilar
-        draw.text((card_x + 22, bloco_y + 44), p["titulo"], font=font_destaque, fill=COLOR_WHITE)
+    # 11. Rodapé Médico e Link Oficial
+    y_rodape = 980
+    draw.line([(72, y_rodape), (600, y_rodape)], fill=(197, 168, 128, 90), width=1)
+    draw.text((72, y_rodape + 14), "Dr. Renato Nakad • Dra. Line Manuelle", font=font_pequena, fill=COLOR_MUTED)
+    draw.text((435, y_rodape + 14), "institutodermaline.com.br", font=font_destaque, fill=COLOR_GOLD_DARK)
 
-        # Destaque / Dica Prática (limitado a 2 linhas)
-        linhas_destaque = quebrar_texto(draw, p["destaque"], font_corpo, card_largura - 45)
-        for idx, linha in enumerate(linhas_destaque[:2]):
-            draw.text((card_x + 22, bloco_y + 80 + (idx * 26)), linha, font=font_corpo, fill=COLOR_GOLD_LIGHT)
-
-        # Linha de assinatura médica discreta no pilar
-        medico_tag = f"Orientação: {p['medico']}"
-        draw.text((card_x + 22, bloco_y + 148), medico_tag, font=font_corpo, fill=COLOR_TEXT_MUTED)
-
-    # 4. Rodapé Elegante com Redes e Localização
-    y_rodape = altura - margem - 75
-    draw.line([(margem + 100, y_rodape), (largura - margem - 100, y_rodape)], fill=COLOR_GOLD, width=1)
-    
-    rodape_linha1 = "Dr. Renato Nakad Gouveia • Dra. Line Manuelle Gouveia"
-    bbox_r1 = draw.textbbox((0, 0), rodape_linha1, font=font_corpo)
-    draw.text(((largura - (bbox_r1[2] - bbox_r1[0])) // 2, y_rodape + 14), rodape_linha1, font=font_corpo, fill=COLOR_GOLD_LIGHT)
-
-    rodape_linha2 = "Instagram: @institutodermaline • Site: institutodermaline.com.br"
-    bbox_r2 = draw.textbbox((0, 0), rodape_linha2, font=font_corpo)
-    draw.text(((largura - (bbox_r2[2] - bbox_r2[0])) // 2, y_rodape + 42), rodape_linha2, font=font_corpo, fill=COLOR_TEXT_MUTED)
-
-    # Salva os arquivos de imagem
+    # 12. Salva os arquivos de imagem
     img_rgb = img.convert("RGB")
     img_rgb.save(card_path, "PNG", quality=95)
     img_rgb.save(card_hoje_path, "PNG", quality=95)
 
-    print(f"[✓] Card gerado com sucesso: {card_path}")
+    print(f"[✓] Card editorial gerado com sucesso: {card_path}")
     print(f"[✓] Card de hoje atualizado: {card_hoje_path}")
 
     return card_path, card_hoje_path
@@ -301,13 +292,16 @@ Pílula Diária de Saúde, Dermatologia & Longevidade
 💡 {b['orientacao_medica']}
 
 ---
+👉 Gostou? Toque no link da nossa bio para acessar o Diário Dermaline e conferir o acervo completo de artigos médicos e reflexões de longevidade no site!
+🌐 www.institutodermaline.com.br
+
 🏥 Instituto Dermaline | Medicina Integrativa & Dermatologia Avançada
 👨‍⚕️ Dr. Renato Nakad Gouveia | CRM-DF 17680
 👩‍⚕️ Dra. Line Manuelle Gouveia | CRM-DF 17449
-🌐 Acesse o acervo completo e artigos científicos no site: institutodermaline.com.br
-📍 Brasília - DF
+📍 Shopping Conjunto Nacional, Torre Vermelha, Salas 5040/5042 - Brasília/DF
+📲 Agendamentos: (61) 99173-6660
 
-#InstitutoDermaline #DermatologiaBrasilia #MedicinaIntegrativa #Skincare #SaudeDaPele #LongevidadeSaudavel #NutricaoCelular #DicasDeSaude #Brasilia #DraLineManuelle #DrRenatoNakad
+#InstitutoDermaline #DermatologiaBrasilia #MedicinaIntegrativa #Skincare #SaudeDaPele #LongevidadeSaudavel #NutricaoCelular #DicasDeSaude #Brasilia #DraLineManuelle #DrRenatoNakad #EsteticaAvancada
 """
     return legenda.strip()
 

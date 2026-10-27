@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview & Gerador do Card Diário Instagram/Facebook | Instituto Dermaline</title>
+  
+  <style>
+    @font-face {
+      font-family: 'AlexBrush';
+      src: url('assets/fonts/AlexBrush-Regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'SerifLuxury';
+      src: url('assets/fonts/Georgia-Bold.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'SansLuxury';
+      src: url('assets/fonts/SegoeUI.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'SansLuxuryBold';
+      src: url('assets/fonts/SegoeUI-Bold.ttf') format('truetype');
+    }
+
+    :root {
+      --color-gold-primary: #C5A880;
+      --color-gold-dark: #9A7B50;
+      --color-charcoal-dark: #1A1F23;
+      --color-charcoal-text: #2D3338;
+      --color-charcoal-muted: #6B7280;
+      --color-ivory-bg: #FAF8F5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'SansLuxury', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0E1113;
+      color: #E2E8F0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+    }
+
+    .preview-header {
+      text-align: center;
+      max-width: 800px;
+      margin-bottom: 25px;
+    }
+
+    .preview-header h1 {
+      font-family: 'SerifLuxury', Georgia, serif;
+      font-size: 1.85rem;
+      color: var(--color-gold-primary);
+      margin-bottom: 8px;
+    }
+
+    .preview-header p {
+      font-size: 0.95rem;
+      color: #94A3B8;
+    }
+
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
+      background: #15191C;
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(197, 168, 128, 0.25);
+      margin-bottom: 30px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 0.85rem;
+      color: var(--color-gold-primary);
+      font-weight: 600;
+    }
+
+    select, button {
+      background: #1D2327;
+      color: #FFFFFF;
+      border: 1px solid rgba(197, 168, 128, 0.35);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    button.btn-download {
+      background: linear-gradient(135deg, #C5A880, #A4845C);
+      color: #0E1113;
+      font-weight: 700;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button.btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(197, 168, 128, 0.35);
+    }
+
+    /* O CONTAINER 1080x1080 ESCALONADO PARA A TELA */
+    .canvas-wrapper {
+      position: relative;
+      width: 580px;
+      height: 580px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(197, 168, 128, 0.3);
+    }
+
+    @media (max-width: 640px) {
+      .canvas-wrapper {
+        width: 360px;
+        height: 360px;
+      }
+    }
+
+    /* Elemento Real em Resolução 1080x1080 que será renderizado */
+    #cardContainer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1080px;
+      height: 1080px;
+      transform-origin: top left;
+      background-color: var(--color-ivory-bg);
+      background-size: cover;
+      background-position: center right;
+      overflow: hidden;
+    }
+
+    /* Overlay com gradiente suave do marfim/champagne para a modelo */
+    .card-gradient-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(250, 248, 244, 0.98) 0%,
+        rgba(250, 248, 244, 0.96) 40%,
+        rgba(250, 248, 244, 0.82) 54%,
+        rgba(250, 248, 244, 0.35) 66%,
+        rgba(250, 248, 244, 0.0) 78%
+      );
+      z-index: 1;
+    }
+
+    /* Moldura fina sofisticada típica das marcas de luxo */
+    .card-border-frame {
+      position: absolute;
+      top: 36px;
+      left: 36px;
+      right: 36px;
+      bottom: 36px;
+      border: 1px solid rgba(197, 168, 128, 0.45);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* Conteúdo Textual Estruturado */
+    .card-content-area {
+      position: relative;
+      z-index: 2;
+      width: 660px;
+      height: 100%;
+      padding: 64px 40px 64px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Cabeçalho do Card */
+    .card-header-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .ig-handle-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'SansLuxuryBold', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-charcoal-text);
+    }
+
+    .ig-handle-pill svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--color-gold-dark);
+    }
+
+    .edition-badge {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-gold-dark);
+      background: rgba(197, 168, 128, 0.16);
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(197, 168, 128, 0.35);
+    }
+
+    /* Bloco Central: O Gancho e a Chamada */
+    .card-hero-block {
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .script-eyebrow {
+      font-family: 'AlexBrush', cursive;
+      font-size: 62px;
+      color: var(--color-gold-dark);
+      line-height: 1;
+      margin-bottom: 8px;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+    }
+
+    .headline-main {
+      font-family: 'SerifLuxury', Georgia, serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--color-charcoal-dark);
+      line-height: 1.15;
+      margin-bottom: 18px;
+      max-width: 540px;
+      letter-spacing: -0.02em;
+    }
+
+    .teaser-subtext {
+      font-family: 'SansLuxury', sans-serif;
+      font-size: 21px;
+      line-height: 1.5;
+      color: #3D444A;
+      max-width: 500px;
+      margin-bottom: 24px;
+    }
+
+    /* As 3 Pílulas do Dia em Formato Minimalista */
+    .pillars-micro-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+      max-width: 520px;
+    }
+
+    .pillar-micro-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      color: #374151;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(4px);
+      padding: 9px 16px;
+      border-radius: 8px;
+      border-left: 3px solid var(--color-gold-primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .pillar-micro-item strong {
+      color: var(--color-gold-dark);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      min-width: 150px;
+    }
+
+    .pillar-micro-item span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    /* Chamada de Ação (CTA Button Nobre) */
+    .cta-capsule-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #C5A880 0%, #A4845C 100%);
+      color: #FFFFFF;
+      padding: 15px 32px;
+      border-radius: 50px;
+      box-shadow: 0 8px 24px rgba(164, 132, 92, 0.35);
+      font-family: 'SansLuxuryBold', sans-serif;
+      font-size: 19px;
+      letter-spacing: 0.02em;
+      width: fit-content;
+      margin-top: 5px;
+    }
+
+    .cta-capsule-button svg {
+      width: 20px;
+      height: 20px;
+      stroke: #FFFFFF;
+    }
+
+    /* Rodapé do Card */
+    .card-footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 540px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(197, 168, 128, 0.35);
+    }
+
+    .doctors-names {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-charcoal-muted);
+      letter-spacing: 0.03em;
+    }
+
+    .site-url-tag {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-gold-dark);
+    }
+
+    /* Diamante Dourado Central no Rodapé da Imagem */
+    .floating-diamond-bottom {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .floating-diamond-bottom img {
+      height: 24px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    }
+  </style>
+</head>
+<body>
+
+  <div class="preview-header">
+    <h1>Instituto Dermaline • Design Editorial Social</h1>
+    <p>Card 1080x1080 de alta conversão para Feed do Instagram e Facebook: visual luminoso, modelo editorial, gancho sucinto e chamada expressa para o Diário no site.</p>
+  </div>
+
+  <div class="controls-bar">
+    <div class="control-group">
+      <label for="editionSelect">Edição Diária:</label>
+      <select id="editionSelect">
+        <!-- Populado dinamicamente de 1 a 32 -->
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="bgSelect">Foto Modelo / Fundo:</label>
+      <select id="bgSelect">
+        <option value="assets/images/templates/bg_editorial_1.jpg">1. Rejuvenescimento & Glow (Champagne)</option>
+        <option value="assets/images/templates/bg_editorial_2.jpg">2. Estética & Skincare (Close Toque)</option>
+        <option value="assets/images/templates/bg_editorial_3.jpg">3. Vitalidade & Nutrição (Serena)</option>
+      </select>
+    </div>
+
+    <button type="button" class="btn-download" id="btnDownload">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+      <span>Exportar Imagem 1080x1080 (PNG)</span>
+    </button>
+  </div>
+
+  <!-- Contêiner Escalado para Visualização -->
+  <div class="canvas-wrapper" id="canvasWrapper">
+    <div id="cardContainer">
+      <div class="card-gradient-overlay"></div>
+      <div class="card-border-frame"></div>
+
+      <div class="card-content-area">
+        <!-- Topo -->
+        <div class="card-header-top">
+          <div class="ig-handle-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <span>@institutodermaline</span>
+          </div>
+          <span class="edition-badge" id="cardEditionBadge">Edição #16</span>
+        </div>
+
+        <!-- Bloco de Impacto (Hook) -->
+        <div class="card-hero-block">
+          <div class="script-eyebrow" id="cardScriptEyebrow">Pílula de Longevidade</div>
+          <h2 class="headline-main" id="cardHeadline">Luz Natural nos Primeiros 15 Minutos!</h2>
+          <p class="teaser-subtext" id="cardTeaser">
+            Como o alinhamento circadiano e a ativação da Vitamina B1 modulam a produção de energia celular e retardam o envelhecimento biológico.
+          </p>
+
+          <!-- 3 Pílulas Rápidas do Dia -->
+          <div class="pillars-micro-grid">
+            <div class="pillar-micro-item">
+              <strong>1. Nutrição Celular</strong>
+              <span id="pillNutriente">Vitamina B1 • Metabolismo da Glicose</span>
+            </div>
+            <div class="pillar-micro-item">
+              <strong>2. Dermatologia</strong>
+              <span id="pillDerma">Dermatite Seborreica: Cuidados e Prevenção</span>
+            </div>
+            <div class="pillar-micro-item">
+              <strong>3. Beleza Ativa</strong>
+              <span id="pillBeleza">Protetor Solar Físico vs. Químico</span>
+            </div>
+          </div>
+
+          <!-- Botão CTA -->
+          <div class="cta-capsule-button">
+            <span>Ler Matéria Completa no Diário</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Rodapé do Card -->
+        <div class="card-footer-bottom">
+          <span class="doctors-names">Dr. Renato Nakad • Dra. Line Manuelle</span>
+          <span class="site-url-tag">institutodermaline.com.br</span>
+        </div>
+      </div>
+
+      <!-- Diamante Flutuante Central no Rodapé -->
+      <div class="floating-diamond-bottom">
+        <svg width="28" height="24" viewBox="0 0 100 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,80 15,30 85,30" fill="#C5A880"/>
+          <polygon points="15,30 35,5 50,30" fill="#E8D5B5"/>
+          <polygon points="85,30 65,5 50,30" fill="#A4845C"/>
+          <polygon points="35,5 65,5 50,30" fill="#DFCAAB"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="exportCanvas" width="1080" height="1080" style="display: none;"></canvas>
+
+  <script src="conteudo_diario_data.js"></script>
+  <script>
+    const editionSelect = document.getElementById('editionSelect');
+    const bgSelect = document.getElementById('bgSelect');
+    const cardContainer = document.getElementById('cardContainer');
+    const canvasWrapper = document.getElementById('canvasWrapper');
+
+    // Ajusta o scale do 1080x1080 para caber perfeitamente no wrapper visível
+    function adjustScale() {
+      const wrapperWidth = canvasWrapper.clientWidth;
+      const scale = wrapperWidth / 1080;
+      cardContainer.style.transform = `scale(${scale})`;
+    }
+    window.addEventListener('resize', adjustScale);
+
+    // Carrega opções de 1 a 32
+    for (let i = 1; i <= 32; i++) {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `Edição #${String(i).padStart(2, '0')}`;
+      if (i === 16) opt.selected = true;
+      editionSelect.appendChild(opt);
+    }
+
+    function updateCard() {
+      const dia = parseInt(editionSelect.value, 10);
+      const bgImg = bgSelect.value;
+      cardContainer.style.backgroundImage = `url('${bgImg}')`;
+
+      const dica = (window.DERMALINE_CONTEUDO_DATA && window.DERMALINE_CONTEUDO_DATA.dicas_diarias) 
+        ? window.DERMALINE_CONTEUDO_DATA.dicas_diarias.find(d => d.dia === dia) 
+        : null;
+
+      if (!dica) return;
+
+      document.getElementById('cardEditionBadge').textContent = `Edição #${String(dia).padStart(2, '0')}`;
+      
+      // Categorias & Títulos atraentes
+      const scriptTitles = [
+        "Pílula de Longevidade",
+        "Segredos da Longevidade",
+        "Dermatologia & Saúde",
+        "Beleza & Vitalidade Celular",
+        "Medicina Integrativa"
+      ];
+      document.getElementById('cardScriptEyebrow').textContent = scriptTitles[(dia - 1) % scriptTitles.length];
+
+      // Gancho Principal
+      const n = dica.nutriente;
+      const d = dica.dermatologia;
+      const b = dica.beleza;
+
+      document.getElementById('cardHeadline').textContent = n.habito_titulo || "Luz Natural nos Primeiros 15 Minutos!";
+      
+      // Teaser sucinto
+      let teaser = n.habito_descricao;
+      if (teaser.length > 130) {
+        teaser = teaser.substring(0, 127) + "...";
+      }
+      document.getElementById('cardTeaser').textContent = teaser;
+
+      // 3 Pílulas
+      document.getElementById('pillNutriente').textContent = `${n.nutriente_nome} • ${n.nutriente_tipo}`;
+      document.getElementById('pillDerma').textContent = d.titulo;
+      document.getElementById('pillBeleza').textContent = b.titulo;
+    }
+
+    editionSelect.addEventListener('change', () => {
+      // Rotaciona o background automaticamente de acordo com o dia
+      const dia = parseInt(editionSelect.value, 10);
+      const bgIndex = ((dia - 1) % 3) + 1;
+      bgSelect.value = `assets/images/templates/bg_editorial_${bgIndex}.jpg`;
+      updateCard();
+    });
+
+    bgSelect.addEventListener('change', updateCard);
+
+    // Exportar via Canvas / html2canvas simulado ou renderização nativa
+    document.getElementById('btnDownload').addEventListener('click', () => {
+      alert("A imagem 1080x1080 é gerada automaticamente pelo script oficial em scripts/publicar_redes.py para envio diário no Instagram e Facebook!");
+    });
+
+    // Inicia
+    adjustScale();
+    updateCard();
+  </script>
+</body>
+</html>
