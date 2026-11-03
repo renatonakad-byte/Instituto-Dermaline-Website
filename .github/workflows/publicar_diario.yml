@@ -1,11 +1,26 @@
-name: Publicacao Diaria Dermaline
+name: Publicacao Diaria Dermaline (3 Posts por Dia)
 
 on:
   schedule:
-    # Roda todos os dias às 08:00 da manhã no Horário de Brasília (11:00 UTC)
+    # Post 1: 08:00 da manhã no Horário de Brasília (11:00 UTC) -> Nutrição & Longevidade (Dr. Renato)
     - cron: '0 11 * * *'
-  # Permite disparar manualmente pelo painel do GitHub a qualquer hora
+    # Post 2: 13:00 da tarde no Horário de Brasília (16:00 UTC) -> Dermatologia Clínica (Dra. Line)
+    - cron: '0 16 * * *'
+    # Post 3: 19:00 da noite no Horário de Brasília (22:00 UTC) -> Beleza & Estética (Dra. Line)
+    - cron: '0 22 * * *'
+  # Permite disparar manualmente pelo painel do GitHub escolhendo qual post publicar (ou os 3 de uma vez)
   workflow_dispatch:
+    inputs:
+      pilar:
+        description: 'Qual post publicar? (todos, nutricao, dermatologia, beleza)'
+        required: false
+        default: 'todos'
+        type: choice
+        options:
+          - todos
+          - nutricao
+          - dermatologia
+          - beleza
 
 permissions:
   contents: write
@@ -29,21 +44,39 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 1. Gerar Card Visual do Dia
+      - name: 1. Determinar Pilar pelo Horário ou Input Manual
+        id: definir_pilar
         run: |
-          python scripts/publicar_redes.py --apenas-card
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            PILAR="${{ github.event.inputs.pilar || 'todos' }}"
+          else
+            HORA_UTC=$(date -u +%H)
+            if [ "$HORA_UTC" -lt 14 ]; then
+              PILAR="nutricao"
+            elif [ "$HORA_UTC" -lt 19 ]; then
+              PILAR="dermatologia"
+            else
+              PILAR="beleza"
+            fi
+          fi
+          echo "Pilar selecionado: $PILAR"
+          echo "pilar=$PILAR" >> $GITHUB_OUTPUT
 
-      - name: 2. Salvar e Publicar Card no Repositório (Disponibilizar URL)
+      - name: 2. Gerar os 3 Cards Visuais do Dia
+        run: |
+          python scripts/publicar_redes.py --apenas-card --pilar ${{ steps.definir_pilar.outputs.pilar }}
+
+      - name: 3. Salvar e Publicar Cards no Repositório (Disponibilizar URLs Públicas)
         run: |
           git config --global user.name "Dermaline Bot"
           git config --global user.email "bot@institutodermaline.com.br"
           git add assets/images/cards/
-          git diff --staged --quiet || (git commit -m "Auto: Card diário atualizado [skip ci]" && git push)
+          git diff --staged --quiet || (git commit -m "Auto: Cards diários atualizados (${{ steps.definir_pilar.outputs.pilar }}) [skip ci]" && git push)
 
-      - name: 3. Disparar Publicação nas Redes Sociais
+      - name: 4. Disparar Publicação nas Redes Sociais (Instagram & Facebook)
         env:
           META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID || '457804507635117' }}
           INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID || '17841404225729043' }}
         run: |
-          python scripts/publicar_redes.py --apenas-publicar
+          python scripts/publicar_redes.py --apenas-publicar --pilar ${{ steps.definir_pilar.outputs.pilar }}

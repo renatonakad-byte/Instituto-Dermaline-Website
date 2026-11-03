@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preview & Gerador do Card Diário Instagram/Facebook | Instituto Dermaline</title>
+  <title>Preview & Gerador • 3 Posts Diários Instagram/Facebook | Instituto Dermaline</title>
   
   <style>
     @font-face {
@@ -24,12 +24,15 @@
     }
 
     :root {
+      --color-ivory-bg: #FAF7F2;
+      --color-bronze-title: #603E2C;
+      --color-gold-script: #B48A48;
       --color-gold-primary: #C5A880;
-      --color-gold-dark: #9A7B50;
-      --color-charcoal-dark: #1A1F23;
-      --color-charcoal-text: #2D3338;
-      --color-charcoal-muted: #6B7280;
-      --color-ivory-bg: #FAF8F5;
+      --color-text-dark: #2C2420;
+      --color-text-body: #4A3F38;
+      --color-chk-1: #D8AF6C;
+      --color-chk-2: #B88A44;
+      --color-chk-3: #A27A66;
     }
 
     * {
@@ -40,44 +43,86 @@
 
     body {
       font-family: 'SansLuxury', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0E1113;
-      color: #E2E8F0;
+      background: #12100E;
+      color: #F5EFE6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 30px 20px;
+      padding: 28px 20px 60px;
     }
 
+    /* Modo de Renderização 1080x1080 Puro para Captura de Imagem */
+    body.render-mode {
+      padding: 0;
+      margin: 0;
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: var(--color-ivory-bg);
+      display: block;
+    }
+
+    body.render-mode .preview-header,
+    body.render-mode .controls-bar,
+    body.render-mode .triptych-section,
+    body.render-mode .zoom-header,
+    body.render-mode .caption-preview {
+      display: none !important;
+    }
+
+    body.render-mode .zoom-section {
+      max-width: none;
+      width: 1080px;
+      height: 1080px;
+      margin: 0;
+      gap: 0;
+    }
+
+    body.render-mode .zoom-wrapper {
+      width: 1080px !important;
+      height: 1080px !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    body.render-mode #mainCard1080 {
+      transform: none !important;
+    }
+
+    /* Cabeçalho da Interface */
     .preview-header {
       text-align: center;
-      max-width: 800px;
-      margin-bottom: 25px;
+      max-width: 920px;
+      margin-bottom: 22px;
     }
 
     .preview-header h1 {
       font-family: 'SerifLuxury', Georgia, serif;
-      font-size: 1.85rem;
+      font-size: 1.9rem;
       color: var(--color-gold-primary);
       margin-bottom: 8px;
     }
 
     .preview-header p {
-      font-size: 0.95rem;
-      color: #94A3B8;
+      font-size: 0.96rem;
+      color: #C7B9A8;
+      line-height: 1.5;
     }
 
     .controls-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 16px;
       align-items: center;
       justify-content: center;
-      background: #15191C;
+      background: #1C1815;
       padding: 14px 24px;
-      border-radius: 12px;
-      border: 1px solid rgba(197, 168, 128, 0.25);
-      margin-bottom: 30px;
+      border-radius: 14px;
+      border: 1px solid rgba(197, 168, 128, 0.35);
+      margin-bottom: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
     }
 
     .control-group {
@@ -87,483 +132,724 @@
     }
 
     label {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--color-gold-primary);
-      font-weight: 600;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    select, button {
-      background: #1D2327;
+    select {
+      background: #28221E;
       color: #FFFFFF;
-      border: 1px solid rgba(197, 168, 128, 0.35);
-      padding: 8px 16px;
+      border: 1px solid rgba(197, 168, 128, 0.4);
+      padding: 9px 14px;
       border-radius: 8px;
       font-size: 0.9rem;
       cursor: pointer;
     }
 
-    button.btn-download {
-      background: linear-gradient(135deg, #C5A880, #A4845C);
-      color: #0E1113;
-      font-weight: 700;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: transform 0.2s, box-shadow 0.2s;
+    .pilar-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
-    button.btn-download:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(197, 168, 128, 0.35);
-    }
-
-    /* O CONTAINER 1080x1080 ESCALONADO PARA A TELA */
-    .canvas-wrapper {
-      position: relative;
-      width: 580px;
-      height: 580px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-      border-radius: 8px;
-      overflow: hidden;
+    .pilar-tab {
+      background: #28221E;
+      color: #D6C7B2;
       border: 1px solid rgba(197, 168, 128, 0.3);
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
     }
 
-    @media (max-width: 640px) {
-      .canvas-wrapper {
-        width: 360px;
-        height: 360px;
+    .pilar-tab.active {
+      background: linear-gradient(135deg, #C5A880, #9E7844);
+      color: #12100E;
+      border-color: transparent;
+      font-weight: 700;
+    }
+
+    /* Grade de 3 Colunas (Simulador do Grid do Instagram) */
+    .triptych-section {
+      margin-bottom: 38px;
+      width: 100%;
+      max-width: 1180px;
+    }
+
+    .triptych-title {
+      text-align: center;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-gold-primary);
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .triptych-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 360px);
+      gap: 18px;
+      justify-content: center;
+    }
+
+    @media (max-width: 1150px) {
+      .triptych-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
       }
     }
 
-    /* Elemento Real em Resolução 1080x1080 que será renderizado */
-    #cardContainer {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .post-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .post-schedule-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #E5D3B3;
+      background: rgba(197, 168, 128, 0.15);
+      border: 1px solid rgba(197, 168, 128, 0.35);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .mini-card-viewport {
+      width: 360px;
+      height: 360px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid rgba(197, 168, 128, 0.35);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.55);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .mini-card-viewport:hover,
+    .mini-card-viewport.selected {
+      transform: translateY(-3px);
+      border-color: var(--color-gold-primary);
+    }
+
+    .mini-card-viewport .dermaline-card-1080 {
+      transform: scale(0.333333);
+      transform-origin: top left;
+    }
+
+    /* Área de Visualização Principal em Alta Definição */
+    .zoom-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .zoom-header {
+      font-family: 'SerifLuxury', serif;
+      font-size: 1.25rem;
+      color: var(--color-gold-primary);
+      text-align: center;
+    }
+
+    .zoom-wrapper {
+      width: 648px;
+      height: 648px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid rgba(197, 168, 128, 0.55);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+      position: relative;
+      background: var(--color-ivory-bg);
+    }
+
+    .zoom-wrapper .dermaline-card-1080 {
+      transform: scale(0.6);
+      transform-origin: top left;
+    }
+
+    @media (max-width: 700px) {
+      .zoom-wrapper {
+        width: 360px;
+        height: 360px;
+      }
+      .zoom-wrapper .dermaline-card-1080 {
+        transform: scale(0.333333);
+      }
+    }
+
+    /* ==========================================================================
+       DESIGN OFICIAL DO CARD 1080x1080 (@institutodermaline)
+       Inspirado nas postagens de Laser, Sculptra e Preenchedores da página
+       ========================================================================== */
+    .dermaline-card-1080 {
       width: 1080px;
       height: 1080px;
-      transform-origin: top left;
+      position: relative;
       background-color: var(--color-ivory-bg);
       background-size: cover;
       background-position: center right;
       overflow: hidden;
+      user-select: none;
     }
 
-    /* Overlay com gradiente suave do marfim/champagne para a modelo */
-    .card-gradient-overlay {
+    /* Gradiente marfim/champagne à esquerda para leitura cristalina */
+    .card-ivory-gradient {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: linear-gradient(
         90deg,
-        rgba(250, 248, 244, 0.98) 0%,
-        rgba(250, 248, 244, 0.96) 40%,
-        rgba(250, 248, 244, 0.82) 54%,
-        rgba(250, 248, 244, 0.35) 66%,
-        rgba(250, 248, 244, 0.0) 78%
+        rgba(250, 247, 242, 0.98) 0%,
+        rgba(250, 247, 242, 0.96) 46%,
+        rgba(250, 247, 242, 0.82) 59%,
+        rgba(250, 247, 242, 0.28) 72%,
+        rgba(250, 247, 242, 0.0) 84%
       );
       z-index: 1;
     }
 
-    /* Moldura fina sofisticada típica das marcas de luxo */
-    .card-border-frame {
+    /* Moldura dupla dourada editorial */
+    .card-frame-outer {
       position: absolute;
-      top: 36px;
-      left: 36px;
-      right: 36px;
-      bottom: 36px;
-      border: 1px solid rgba(197, 168, 128, 0.45);
+      inset: 26px;
+      border: 1.5px solid rgba(180, 138, 72, 0.42);
       pointer-events: none;
-      z-index: 3;
+      z-index: 4;
     }
 
-    /* Conteúdo Textual Estruturado */
-    .card-content-area {
+    .card-frame-inner {
+      position: absolute;
+      inset: 34px;
+      border: 1px solid rgba(197, 168, 128, 0.25);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    /* Área de Conteúdo (Coluna Esquerda Editorial) */
+    .card-body-left {
       position: relative;
-      z-index: 2;
-      width: 660px;
+      z-index: 3;
+      width: 650px;
       height: 100%;
-      padding: 64px 40px 64px 72px;
+      padding: 54px 20px 92px 66px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
-    /* Cabeçalho do Card */
-    .card-header-top {
+    /* Topo: @institutodermaline + Selo da Edição */
+    .card-top-bar {
       display: flex;
-      align-items: center;
-      gap: 14px;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .ig-handle-pill {
+    .brand-handle-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'SansLuxuryBold', sans-serif;
+      font-size: 17px;
+      color: var(--color-bronze-title);
+      letter-spacing: 0.08em;
+    }
+
+    .pilar-pill-badge {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      width: fit-content;
       font-family: 'SansLuxuryBold', sans-serif;
-      font-size: 16px;
+      font-size: 13px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--color-charcoal-text);
-    }
-
-    .ig-handle-pill svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--color-gold-dark);
-    }
-
-    .edition-badge {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--color-gold-dark);
-      background: rgba(197, 168, 128, 0.16);
-      padding: 4px 10px;
+      color: var(--color-gold-script);
+      background: rgba(197, 168, 128, 0.18);
+      border: 1px solid rgba(180, 138, 72, 0.4);
+      padding: 5px 14px;
       border-radius: 20px;
-      border: 1px solid rgba(197, 168, 128, 0.35);
     }
 
-    /* Bloco Central: O Gancho e a Chamada */
-    .card-hero-block {
-      margin-top: 10px;
-      margin-bottom: 20px;
+    /* Bloco de Títulos (Cursivo Dourado + Serif Bronze) */
+    .card-title-group {
+      margin-top: 4px;
     }
 
-    .script-eyebrow {
+    .eyebrow-script {
       font-family: 'AlexBrush', cursive;
       font-size: 62px;
-      color: var(--color-gold-dark);
-      line-height: 1;
-      margin-bottom: 8px;
-      text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+      color: var(--color-gold-script);
+      line-height: 0.95;
+      margin-bottom: 4px;
+      text-shadow: 0 2px 4px rgba(255,255,255,0.9);
     }
 
-    .headline-main {
+    .main-serif-title {
       font-family: 'SerifLuxury', Georgia, serif;
-      font-size: 44px;
-      font-weight: 700;
-      color: var(--color-charcoal-dark);
-      line-height: 1.15;
-      margin-bottom: 18px;
-      max-width: 540px;
-      letter-spacing: -0.02em;
+      font-size: 37px;
+      line-height: 1.14;
+      color: var(--color-bronze-title);
+      letter-spacing: -0.015em;
+      margin-bottom: 10px;
+      max-width: 575px;
     }
 
-    .teaser-subtext {
+    .intro-description {
       font-family: 'SansLuxury', sans-serif;
-      font-size: 21px;
-      line-height: 1.5;
-      color: #3D444A;
-      max-width: 500px;
-      margin-bottom: 24px;
+      font-size: 19.5px;
+      line-height: 1.38;
+      color: var(--color-text-body);
+      max-width: 565px;
     }
 
-    /* As 3 Pílulas do Dia em Formato Minimalista */
-    .pillars-micro-grid {
+    /* Os 3 Checklists com Quadrados [✓] (Padrão @institutodermaline) */
+    .checklist-stack {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 28px;
-      max-width: 520px;
+      gap: 12px;
+      margin: 10px 0;
+      max-width: 575px;
     }
 
-    .pillar-micro-item {
+    .check-card-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(197, 168, 128, 0.42);
+      border-radius: 12px;
+      padding: 13px 16px;
+      box-shadow: 0 4px 14px rgba(96, 62, 44, 0.05);
+    }
+
+    .check-icon-box {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    }
+
+    .check-icon-box.chk-1 { background: var(--color-chk-1); }
+    .check-icon-box.chk-2 { background: var(--color-chk-2); }
+    .check-icon-box.chk-3 { background: var(--color-chk-3); }
+
+    .check-icon-box svg {
+      width: 22px;
+      height: 22px;
+      stroke: #FFFFFF;
+      stroke-width: 3;
+    }
+
+    .check-text-col {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .check-item-title {
+      font-family: 'SansLuxuryBold', sans-serif;
+      font-size: 20px;
+      color: var(--color-bronze-title);
+      line-height: 1.2;
+    }
+
+    .check-item-desc {
+      font-family: 'SansLuxury', sans-serif;
+      font-size: 18px;
+      color: var(--color-text-dark);
+      line-height: 1.34;
+    }
+
+    /* Bloco de Orientação Médica Assinada */
+    .medical-advice-box {
+      max-width: 575px;
+      background: linear-gradient(90deg, rgba(243, 233, 216, 0.95), rgba(250, 246, 239, 0.9));
+      border: 1px solid rgba(180, 138, 72, 0.45);
+      border-left: 6px solid var(--color-gold-script);
+      border-radius: 10px;
+      padding: 11px 16px;
+    }
+
+    .medical-advice-label {
+      font-family: 'SansLuxuryBold', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-gold-script);
+      margin-bottom: 3px;
+    }
+
+    .medical-advice-text {
+      font-family: 'SansLuxury', sans-serif;
+      font-size: 17.5px;
+      line-height: 1.32;
+      color: var(--color-bronze-title);
+      font-weight: 600;
+    }
+
+    /* Selo Flutuante à Direita (Estilo "Clube do Sculptra" / "Clube do Laser") */
+    .clube-signature-badge {
+      position: absolute;
+      right: 54px;
+      bottom: 96px;
+      z-index: 3;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(6px);
+      border: 1.5px solid rgba(180, 138, 72, 0.55);
+      padding: 10px 28px;
+      border-radius: 40px;
+      box-shadow: 0 10px 28px rgba(60, 38, 24, 0.14);
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 16px;
-      color: #374151;
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(4px);
-      padding: 9px 16px;
-      border-radius: 8px;
-      border-left: 3px solid var(--color-gold-primary);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
 
-    .pillar-micro-item strong {
-      color: var(--color-gold-dark);
-      font-size: 13px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      min-width: 150px;
+    .clube-signature-badge span {
+      font-family: 'AlexBrush', cursive;
+      font-size: 40px;
+      color: var(--color-gold-script);
+      line-height: 1;
     }
 
-    .pillar-micro-item span {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 15px;
-      font-weight: 500;
-    }
-
-    /* Chamada de Ação (CTA Button Nobre) */
-    .cta-capsule-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: linear-gradient(135deg, #C5A880 0%, #A4845C 100%);
-      color: #FFFFFF;
-      padding: 15px 32px;
-      border-radius: 50px;
-      box-shadow: 0 8px 24px rgba(164, 132, 92, 0.35);
-      font-family: 'SansLuxuryBold', sans-serif;
-      font-size: 19px;
-      letter-spacing: 0.02em;
-      width: fit-content;
-      margin-top: 5px;
-    }
-
-    .cta-capsule-button svg {
-      width: 20px;
-      height: 20px;
-      stroke: #FFFFFF;
-    }
-
-    /* Rodapé do Card */
-    .card-footer-bottom {
+    /* Rodapé Institucional Fixo */
+    .card-bottom-footer {
+      position: absolute;
+      left: 66px;
+      right: 66px;
+      bottom: 44px;
+      z-index: 3;
+      padding-top: 12px;
+      border-top: 1px solid rgba(180, 138, 72, 0.4);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 540px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(197, 168, 128, 0.35);
     }
 
-    .doctors-names {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--color-charcoal-muted);
+    .footer-doctor-info {
+      font-family: 'SansLuxuryBold', sans-serif;
+      font-size: 16px;
+      color: var(--color-bronze-title);
+      letter-spacing: 0.02em;
+    }
+
+    .footer-site-info {
+      font-family: 'SansLuxuryBold', sans-serif;
+      font-size: 16px;
+      color: var(--color-gold-script);
       letter-spacing: 0.03em;
     }
 
-    .site-url-tag {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--color-gold-dark);
-    }
-
-    /* Diamante Dourado Central no Rodapé da Imagem */
-    .floating-diamond-bottom {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 4;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .floating-diamond-bottom img {
-      height: 24px;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    .caption-preview {
+      width: 100%;
+      max-width: 648px;
+      background: #1C1815;
+      border: 1px solid rgba(197, 168, 128, 0.35);
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #E8DFD5;
+      white-space: pre-wrap;
     }
   </style>
 </head>
 <body>
 
   <div class="preview-header">
-    <h1>Instituto Dermaline • Design Editorial Social</h1>
-    <p>Card 1080x1080 de alta conversão para Feed do Instagram e Facebook: visual luminoso, modelo editorial, gancho sucinto e chamada expressa para o Diário no site.</p>
+    <h1>Instituto Dermaline • 3 Posts Diários Separados (Opção A)</h1>
+    <p>Cada dica agora é publicada em um post exclusivo (08h Nutrição, 13h Dermatologia e 19h Beleza), com fotos e ilustrações editoriais próprias, paleta marfim/champagne e os checklists <strong>[✓]</strong> idênticos às demais publicações da página.</p>
   </div>
 
   <div class="controls-bar">
     <div class="control-group">
       <label for="editionSelect">Edição Diária:</label>
-      <select id="editionSelect">
-        <!-- Populado dinamicamente de 1 a 32 -->
-      </select>
+      <select id="editionSelect"></select>
     </div>
 
-    <div class="control-group">
-      <label for="bgSelect">Foto Modelo / Fundo:</label>
-      <select id="bgSelect">
-        <option value="assets/images/templates/bg_editorial_1.jpg">1. Rejuvenescimento & Glow (Champagne)</option>
-        <option value="assets/images/templates/bg_editorial_2.jpg">2. Estética & Skincare (Close Toque)</option>
-        <option value="assets/images/templates/bg_editorial_3.jpg">3. Vitalidade & Nutrição (Serena)</option>
-      </select>
+    <div class="pilar-tabs">
+      <button class="pilar-tab active" data-pilar="nutricao">☀️ 08h • Post 1: Nutrição (Dr. Renato)</button>
+      <button class="pilar-tab" data-pilar="dermatologia">🌤️ 13h • Post 2: Dermatologia (Dra. Line)</button>
+      <button class="pilar-tab" data-pilar="beleza">✨ 19h • Post 3: Beleza & Estética (Dra. Line)</button>
     </div>
-
-    <button type="button" class="btn-download" id="btnDownload">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-        <polyline points="7 10 12 15 17 10"></polyline>
-        <line x1="12" y1="15" x2="12" y2="3"></line>
-      </svg>
-      <span>Exportar Imagem 1080x1080 (PNG)</span>
-    </button>
   </div>
 
-  <!-- Contêiner Escalado para Visualização -->
-  <div class="canvas-wrapper" id="canvasWrapper">
-    <div id="cardContainer">
-      <div class="card-gradient-overlay"></div>
-      <div class="card-border-frame"></div>
-
-      <div class="card-content-area">
-        <!-- Topo -->
-        <div class="card-header-top">
-          <div class="ig-handle-pill">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg>
-            <span>@institutodermaline</span>
-          </div>
-          <span class="edition-badge" id="cardEditionBadge">Edição #16</span>
-        </div>
-
-        <!-- Bloco de Impacto (Hook) -->
-        <div class="card-hero-block">
-          <div class="script-eyebrow" id="cardScriptEyebrow">Pílula de Longevidade</div>
-          <h2 class="headline-main" id="cardHeadline">Luz Natural nos Primeiros 15 Minutos!</h2>
-          <p class="teaser-subtext" id="cardTeaser">
-            Como o alinhamento circadiano e a ativação da Vitamina B1 modulam a produção de energia celular e retardam o envelhecimento biológico.
-          </p>
-
-          <!-- 3 Pílulas Rápidas do Dia -->
-          <div class="pillars-micro-grid">
-            <div class="pillar-micro-item">
-              <strong>1. Nutrição Celular</strong>
-              <span id="pillNutriente">Vitamina B1 • Metabolismo da Glicose</span>
-            </div>
-            <div class="pillar-micro-item">
-              <strong>2. Dermatologia</strong>
-              <span id="pillDerma">Dermatite Seborreica: Cuidados e Prevenção</span>
-            </div>
-            <div class="pillar-micro-item">
-              <strong>3. Beleza Ativa</strong>
-              <span id="pillBeleza">Protetor Solar Físico vs. Químico</span>
-            </div>
-          </div>
-
-          <!-- Botão CTA -->
-          <div class="cta-capsule-button">
-            <span>Ler Matéria Completa no Diário</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Rodapé do Card -->
-        <div class="card-footer-bottom">
-          <span class="doctors-names">Dr. Renato Nakad • Dra. Line Manuelle</span>
-          <span class="site-url-tag">institutodermaline.com.br</span>
+  <!-- Simulador da Linha de 3 Colunas no Grid do Instagram -->
+  <div class="triptych-section">
+    <div class="triptych-title">Simulação da Linha Diária no Feed do Instagram (3 Colunas Harmônicas)</div>
+    <div class="triptych-grid">
+      <div class="post-column">
+        <span class="post-schedule-tag">☀️ 08:00 • Nutrição & Longevidade</span>
+        <div class="mini-card-viewport selected" id="miniWrap_nutricao" onclick="selecionarPilar('nutricao')">
+          <div id="miniCard_nutricao" class="dermaline-card-1080"></div>
         </div>
       </div>
 
-      <!-- Diamante Flutuante Central no Rodapé -->
-      <div class="floating-diamond-bottom">
-        <svg width="28" height="24" viewBox="0 0 100 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="50,80 15,30 85,30" fill="#C5A880"/>
-          <polygon points="15,30 35,5 50,30" fill="#E8D5B5"/>
-          <polygon points="85,30 65,5 50,30" fill="#A4845C"/>
-          <polygon points="35,5 65,5 50,30" fill="#DFCAAB"/>
-        </svg>
+      <div class="post-column">
+        <span class="post-schedule-tag">🌤️ 13:00 • Dermatologia Clínica</span>
+        <div class="mini-card-viewport" id="miniWrap_dermatologia" onclick="selecionarPilar('dermatologia')">
+          <div id="miniCard_dermatologia" class="dermaline-card-1080"></div>
+        </div>
+      </div>
+
+      <div class="post-column">
+        <span class="post-schedule-tag">✨ 19:00 • Beleza & Estética</span>
+        <div class="mini-card-viewport" id="miniWrap_beleza" onclick="selecionarPilar('beleza')">
+          <div id="miniCard_beleza" class="dermaline-card-1080"></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <canvas id="exportCanvas" width="1080" height="1080" style="display: none;"></canvas>
+  <!-- Card Principal 1080x1080 em Destaque + Legenda -->
+  <div class="zoom-section">
+    <div class="zoom-header" id="zoomHeaderTitle">Visualização em Alta Resolução (1080×1080px)</div>
+    <div class="zoom-wrapper">
+      <div id="mainCard1080" class="dermaline-card-1080"></div>
+    </div>
+    <div class="caption-preview" id="captionBox"></div>
+  </div>
 
   <script src="conteudo_diario_data.js"></script>
   <script>
+    const params = new URLSearchParams(window.location.search);
+    const isRenderMode = params.get('render') === '1';
+    if (isRenderMode) {
+      document.body.classList.add('render-mode');
+    }
+
+    const dicas = (window.DERMALINE_CONTEUDO_DATA && window.DERMALINE_CONTEUDO_DATA.dicas_diarias) || [];
     const editionSelect = document.getElementById('editionSelect');
-    const bgSelect = document.getElementById('bgSelect');
-    const cardContainer = document.getElementById('cardContainer');
-    const canvasWrapper = document.getElementById('canvasWrapper');
+    const tabs = document.querySelectorAll('.pilar-tab');
 
-    // Ajusta o scale do 1080x1080 para caber perfeitamente no wrapper visível
-    function adjustScale() {
-      const wrapperWidth = canvasWrapper.clientWidth;
-      const scale = wrapperWidth / 1080;
-      cardContainer.style.transform = `scale(${scale})`;
-    }
-    window.addEventListener('resize', adjustScale);
+    let diaAtual = parseInt(params.get('dia') || '34', 10);
+    let pilarAtual = params.get('pilar') || 'nutricao';
 
-    // Carrega opções dinamicamente do banco de dados (todas as edições disponíveis)
-    const totalDicas = (window.DERMALINE_CONTEUDO_DATA && window.DERMALINE_CONTEUDO_DATA.dicas_diarias) 
-      ? window.DERMALINE_CONTEUDO_DATA.dicas_diarias.length 
-      : 64;
-
-    for (let i = 1; i <= totalDicas; i++) {
+    dicas.forEach(d => {
       const opt = document.createElement('option');
-      opt.value = i;
-      opt.textContent = `Edição #${String(i).padStart(2, '0')}`;
-      if (i === 33) opt.selected = true;
+      opt.value = d.dia;
+      opt.textContent = `Edição #${String(d.dia).padStart(2, '0')} — ${d.nutriente.nutriente_nome} | ${d.dermatologia.titulo.substring(0, 28)}...`;
+      if (d.dia === diaAtual) opt.selected = true;
       editionSelect.appendChild(opt);
+    });
+
+    function escolherTemplate(dia, pilar) {
+      const listas = {
+        nutricao: [
+          'assets/images/templates/bg_nutricao_1.jpg',
+          'assets/images/templates/bg_nutricao_2.jpg',
+          'assets/images/templates/bg_editorial_3.jpg'
+        ],
+        dermatologia: [
+          'assets/images/templates/bg_dermato_1.jpg',
+          'assets/images/templates/bg_dermato_2.jpg',
+          'assets/images/templates/bg_editorial_2.jpg'
+        ],
+        beleza: [
+          'assets/images/templates/bg_editorial_1.jpg',
+          'assets/images/templates/bg_editorial_2.jpg',
+          'assets/images/templates/bg_editorial_3.jpg'
+        ]
+      };
+      const arr = listas[pilar] || listas.beleza;
+      return arr[(dia - 1) % arr.length];
     }
 
-    function updateCard() {
-      const dia = parseInt(editionSelect.value, 10);
-      const bgImg = bgSelect.value;
-      cardContainer.style.backgroundImage = `url('${bgImg}')`;
+    function extrairDadosPilar(dia, dica, pilar) {
+      const diaStr = String(dia).padStart(2, '0');
+      if (pilar === 'nutricao') {
+        const n = dica.nutriente;
+        return {
+          seloTopo: `DIÁRIO DERMALINE • EDIÇÃO #${diaStr} • NUTRIÇÃO & LONGEVIDADE`,
+          eyebrow: 'Medicina Integrativa',
+          titulo: n.habito_titulo,
+          intro: n.habito_descricao,
+          checks: [
+            { titulo: 'Nutriente em Foco', texto: `${n.nutriente_nome} (${n.nutriente_tipo})` },
+            { titulo: 'Benefício Celular', texto: n.o_que_faz },
+            { titulo: 'Fontes Naturais', texto: n.fontes_alimentares }
+          ],
+          boxLabel: '✦ ORIENTAÇÃO MÉDICA PERSONALIZADA',
+          boxTexto: n.orientacao_medica,
+          clubeBadge: 'Clube da Longevidade',
+          medico: 'Dr. Renato Nakad Gouveia • CRM-DF 17680'
+        };
+      } else if (pilar === 'dermatologia') {
+        const d = dica.dermatologia;
+        return {
+          seloTopo: `DIÁRIO DERMALINE • EDIÇÃO #${diaStr} • DERMATOLOGIA CLÍNICA`,
+          eyebrow: 'Saúde da Sua Pele',
+          titulo: d.titulo,
+          intro: 'A prevenção dermatológica diária e o diagnóstico médico precoce preservam a saúde e a vitalidade da sua pele:',
+          checks: [
+            { titulo: 'Entenda a Condição', texto: d.descricao },
+            { titulo: 'Sinais & Prevenção', texto: d.destaque_texto },
+            { titulo: 'Conduta Dermatológica', texto: d.orientacao_medica }
+          ],
+          boxLabel: '✦ CUIDADO DERMATOLÓGICO ESPECIALIZADO',
+          boxTexto: 'Ao notar alterações na pele, cabelos ou unhas, agende sua avaliação dermatoscópica no Instituto Dermaline.',
+          clubeBadge: 'Dermatologia Clínica',
+          medico: 'Dra. Line Manuelle Gouveia • CRM-DF 17449'
+        };
+      } else {
+        const b = dica.beleza;
+        return {
+          seloTopo: `DIÁRIO DERMALINE • EDIÇÃO #${diaStr} • ESTÉTICA AVANÇADA`,
+          eyebrow: 'Beleza Consciente',
+          titulo: b.titulo,
+          intro: 'Protocolos médicos de alta precisão para realçar sua beleza com naturalidade, segurança e estímulo biológico:',
+          checks: [
+            { titulo: 'Mecanismo de Ação', texto: b.descricao },
+            { titulo: 'Benefícios & Resultados', texto: b.destaque_texto },
+            { titulo: 'Protocolo Recomendado', texto: b.orientacao_medica }
+          ],
+          boxLabel: '✦ PRONTA PARA TRANSFORMAR SUA BELEZA?',
+          boxTexto: 'Descubra o protocolo ideal para a sua pele com acompanhamento médico individualizado em Brasília.',
+          clubeBadge: 'Clube da Beleza',
+          medico: 'Dra. Line Manuelle Gouveia • CRM-DF 17449'
+        };
+      }
+    }
 
-      const dica = (window.DERMALINE_CONTEUDO_DATA && window.DERMALINE_CONTEUDO_DATA.dicas_diarias) 
-        ? window.DERMALINE_CONTEUDO_DATA.dicas_diarias.find(d => d.dia === dia) 
-        : null;
+    function gerarHTMLCard(dia, dica, pilar) {
+      const info = extrairDadosPilar(dia, dica, pilar);
+      const checksHTML = info.checks.map((c, idx) => `
+        <div class="check-card-row">
+          <div class="check-icon-box chk-${idx + 1}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div class="check-text-col">
+            <div class="check-item-title">${c.titulo}</div>
+            <div class="check-item-desc">${c.texto}</div>
+          </div>
+        </div>
+      `).join('');
 
+      return `
+        <div class="card-ivory-gradient"></div>
+        <div class="card-frame-outer"></div>
+        <div class="card-frame-inner"></div>
+
+        <div class="card-body-left">
+          <div class="card-top-bar">
+            <div class="brand-handle-row">
+              <svg width="22" height="19" viewBox="0 0 100 85" fill="none">
+                <polygon points="50,80 12,28 88,28" fill="#C5A880"/>
+                <polygon points="12,28 32,5 50,28" fill="#E8D5B5"/>
+                <polygon points="88,28 68,5 50,28" fill="#9E7844"/>
+                <polygon points="32,5 68,5 50,28" fill="#DFCAAB"/>
+              </svg>
+              <span>@institutodermaline</span>
+            </div>
+            <div class="pilar-pill-badge">${info.seloTopo}</div>
+          </div>
+
+          <div class="card-title-group">
+            <div class="eyebrow-script">${info.eyebrow}</div>
+            <h2 class="main-serif-title">${info.titulo}</h2>
+            <p class="intro-description">${info.intro}</p>
+          </div>
+
+          <div class="checklist-stack">
+            ${checksHTML}
+          </div>
+
+          <div class="medical-advice-box">
+            <div class="medical-advice-label">${info.boxLabel}</div>
+            <div class="medical-advice-text">${info.boxTexto}</div>
+          </div>
+        </div>
+
+        <div class="clube-signature-badge">
+          <svg width="22" height="19" viewBox="0 0 100 85" fill="none">
+            <polygon points="50,80 12,28 88,28" fill="#C5A880"/>
+            <polygon points="12,28 32,5 50,28" fill="#E8D5B5"/>
+            <polygon points="88,28 68,5 50,28" fill="#9E7844"/>
+            <polygon points="32,5 68,5 50,28" fill="#DFCAAB"/>
+          </svg>
+          <span>${info.clubeBadge}</span>
+        </div>
+
+        <div class="card-bottom-footer">
+          <span class="footer-doctor-info">${info.medico}</span>
+          <span class="footer-site-info">institutodermaline.com.br</span>
+        </div>
+      `;
+    }
+
+    function montarLegendaCompleta(dia, dica, pilar) {
+      const diaStr = String(dia).padStart(2, '0');
+      const rodape = `---\n👉 Acesse o link na nossa bio para ler o Diário Dermaline completo e agendar sua consulta!\n🌐 www.institutodermaline.com.br\n🏥 Instituto Dermaline | Shopping Conjunto Nacional, Torre Vermelha, Salas 5040/5042 - Brasília/DF\n📲 Agendamentos: (61) 99173-6660`;
+
+      if (pilar === 'nutricao') {
+        const n = dica.nutriente;
+        return `🌿 ${n.habito_titulo}\nDiário de Longevidade Dermaline • Edição #${diaStr} (Post 1/3)\n\n${n.habito_descricao}\n\n✨ NUTRIENTE EM FOCO: ${n.nutriente_nome} (${n.nutriente_tipo})\n✅ Benefício Celular: ${n.o_que_faz}\n🥗 Melhores Fontes: ${n.fontes_alimentares}\n\n💡 Orientação Médica (${n.medico}):\n"${n.orientacao_medica}"\n\n${rodape}`;
+      } else if (pilar === 'dermatologia') {
+        const d = dica.dermatologia;
+        return `🔬 ${d.titulo}\nDiário de Saúde da Pele Dermaline • Edição #${diaStr} (Post 2/3)\n\n✅ Entenda a Condição:\n${d.descricao}\n\n📌 Sinais de Alerta & Cuidados Práticos:\n${d.destaque_texto}\n\n💡 Orientação Dermatológica (${d.medico}):\n"${d.orientacao_medica}"\n\n${rodape}`;
+      } else {
+        const b = dica.beleza;
+        return `✨ ${b.titulo}\nDiário de Beleza Consciente Dermaline • Edição #${diaStr} (Post 3/3)\n\n💎 Como Funciona na Derme:\n${b.descricao}\n\n✅ Benefícios & Resultados:\n${b.destaque_texto}\n\n💡 Recomendação Especializada (${b.medico}):\n"${b.orientacao_medica}"\n\n${rodape}`;
+      }
+    }
+
+    function renderizarTudo() {
+      const dica = dicas.find(d => d.dia === diaAtual) || dicas[0];
       if (!dica) return;
 
-      document.getElementById('cardEditionBadge').textContent = `Edição #${String(dia).padStart(2, '0')}`;
-      
-      // Categorias & Títulos atraentes
-      const scriptTitles = [
-        "Pílula de Longevidade",
-        "Segredos da Longevidade",
-        "Dermatologia & Saúde",
-        "Beleza & Vitalidade Celular",
-        "Medicina Integrativa"
-      ];
-      document.getElementById('cardScriptEyebrow').textContent = scriptTitles[(dia - 1) % scriptTitles.length];
+      // Renderiza os 3 mini-cards da grade do Instagram
+      ['nutricao', 'dermatologia', 'beleza'].forEach(p => {
+        const el = document.getElementById(`miniCard_${p}`);
+        if (el) {
+          el.style.backgroundImage = `url('${escolherTemplate(diaAtual, p)}')`;
+          el.innerHTML = gerarHTMLCard(diaAtual, dica, p);
+        }
+        const wrap = document.getElementById(`miniWrap_${p}`);
+        if (wrap) {
+          wrap.classList.toggle('selected', p === pilarAtual);
+        }
+      });
 
-      // Gancho Principal
-      const n = dica.nutriente;
-      const d = dica.dermatologia;
-      const b = dica.beleza;
+      // Renderiza o Card Principal 1080x1080
+      const mainEl = document.getElementById('mainCard1080');
+      mainEl.style.backgroundImage = `url('${escolherTemplate(diaAtual, pilarAtual)}')`;
+      mainEl.innerHTML = gerarHTMLCard(diaAtual, dica, pilarAtual);
 
-      document.getElementById('cardHeadline').textContent = n.habito_titulo || "Luz Natural nos Primeiros 15 Minutos!";
-      
-      // Teaser sucinto
-      let teaser = n.habito_descricao;
-      if (teaser.length > 130) {
-        teaser = teaser.substring(0, 127) + "...";
-      }
-      document.getElementById('cardTeaser').textContent = teaser;
-
-      // 3 Pílulas
-      document.getElementById('pillNutriente').textContent = `${n.nutriente_nome} • ${n.nutriente_tipo}`;
-      document.getElementById('pillDerma').textContent = d.titulo;
-      document.getElementById('pillBeleza').textContent = b.titulo;
+      // Atualiza abas e legenda
+      tabs.forEach(t => t.classList.toggle('active', t.dataset.pilar === pilarAtual));
+      document.getElementById('captionBox').textContent = montarLegendaCompleta(diaAtual, dica, pilarAtual);
     }
 
+    function selecionarPilar(p) {
+      pilarAtual = p;
+      renderizarTudo();
+    }
+
+    tabs.forEach(t => {
+      t.addEventListener('click', () => selecionarPilar(t.dataset.pilar));
+    });
+
     editionSelect.addEventListener('change', () => {
-      // Rotaciona o background automaticamente de acordo com o dia
-      const dia = parseInt(editionSelect.value, 10);
-      const bgIndex = ((dia - 1) % 3) + 1;
-      bgSelect.value = `assets/images/templates/bg_editorial_${bgIndex}.jpg`;
-      updateCard();
+      diaAtual = parseInt(editionSelect.value, 10);
+      renderizarTudo();
     });
 
-    bgSelect.addEventListener('change', updateCard);
-
-    // Exportar via Canvas / html2canvas simulado ou renderização nativa
-    document.getElementById('btnDownload').addEventListener('click', () => {
-      alert("A imagem 1080x1080 é gerada automaticamente pelo script oficial em scripts/publicar_redes.py para envio diário no Instagram e Facebook!");
-    });
-
-    // Inicia
-    adjustScale();
-    updateCard();
+    renderizarTudo();
   </script>
 </body>
 </html>
