@@ -62,9 +62,9 @@ jobs:
           echo "Pilar selecionado: $PILAR"
           echo "pilar=$PILAR" >> $GITHUB_OUTPUT
 
-      - name: 2. Gerar os 3 Cards Visuais do Dia
+      - name: 2. Gerar Cards Visuais em Alta Definição (1080x1080)
         run: |
-          python scripts/publicar_redes.py --apenas-card --pilar ${{ steps.definir_pilar.outputs.pilar }}
+          node scripts/renderizar_cards_local.js --pilar ${{ steps.definir_pilar.outputs.pilar }} || python scripts/publicar_redes.py --apenas-card --pilar ${{ steps.definir_pilar.outputs.pilar }}
 
       - name: 3. Salvar e Publicar Cards no Repositório (Disponibilizar URLs Públicas)
         run: |
