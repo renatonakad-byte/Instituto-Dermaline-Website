@@ -28,7 +28,9 @@ LOGO_PATH = os.path.join(BASE_DIR, "assets", "images", "logo_dermaline_original.
 # Credenciais da Meta (obtidas via variáveis de ambiente / GitHub Secrets)
 META_ACCESS_TOKEN = os.environ.get("META_ACCESS_TOKEN", "").strip()
 FACEBOOK_PAGE_ID = os.environ.get("FACEBOOK_PAGE_ID", "457804507635117").strip()
-INSTAGRAM_ACCOUNT_ID = os.environ.get("INSTAGRAM_ACCOUNT_ID", "17841404225729043").strip()
+_raw_ig_id = os.environ.get("INSTAGRAM_ACCOUNT_ID", "17841400910495764").strip()
+# Garante o ID oficial de @institutodermaline mesmo se o secret antigo (17841404225729043) estiver salvo
+INSTAGRAM_ACCOUNT_ID = "17841400910495764" if _raw_ig_id in ("", "17841404225729043") else _raw_ig_id
 REPO_SLUG = os.environ.get("GITHUB_REPOSITORY", "renatonakad-byte/Instituto-Dermaline-Website")
 BRANCH_NAME = os.environ.get("GITHUB_REF_NAME", "main")
 
